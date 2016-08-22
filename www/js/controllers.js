@@ -1,56 +1,57 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+.controller('MapCtrl', function($scope, $ionicLoading, $http) {
+  $scope.mapCreated = function(map) {
+    $scope.map = map;
+    $scope.map.setCenter(new google.maps.LatLng(-30.0573828,-51.1806058));
+    $scope.loadOccurrences();
   };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
+  $scope.loadOccurrences = function () {
+    $http.get("http://saudeemfocoapi.herokuapp.com/occurrences")
+      .success(function (occurrences) {
+        angular.forEach(occurrences, function(occurrence) {
+          $scope.addOccurrence(occurrence);
+        });
+      })
+      .error(function (error) {
+        console.log(error);
+      });
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+  $scope.addOccurrence = function (occurrence) {
+    var marker = new google.maps.Marker({
+      map: $scope.map,
+      position: new google.maps.LatLng(occurrence.location.coordinates[0],occurrence.location.coordinates[1])
+    });
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    var content = "<h4>" + occurrence.description + "</h4>";
+    var infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infoWindow.open($scope.map, marker);
+    });
   };
-})
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+  $scope.centerOnMe = function () {
+    console.log("Centering");
+    if (!$scope.map) {
+      return;
+    }
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+    $scope.loading = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+    });
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      console.log('Got pos', pos);
+      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+      $scope.loading.hide();
+    }, function (error) {
+      alert('Unable to get location: ' + error.message);
+    });
+  };
 });
