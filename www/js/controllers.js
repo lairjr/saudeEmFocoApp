@@ -7,6 +7,8 @@ angular.module('starter.controllers', [])
     $scope.loadOccurrences();
   };
 
+  $scope.title = 'Hello World!';
+
   $scope.loadOccurrences = function () {
     $http.get("http://saudeemfocoapi.herokuapp.com/occurrences")
       .success(function (occurrences) {
