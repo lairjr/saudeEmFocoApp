@@ -3,6 +3,5 @@ install:
   - npm install -g gulp
   - npm install -g karma-cli
   - npm install
-  - gulp install
 script:
   - npm run unit-test
