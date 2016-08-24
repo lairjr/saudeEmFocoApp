@@ -1,13 +1,10 @@
 angular.module('starter.controllers', [])
-
-.controller('MapCtrl', function($scope, $ionicLoading, $http) {
-  $scope.mapCreated = function(map) {
+.controller('MapsCtrl', function($scope, $ionicLoading, $http) {
+  $scope.init = function(map) {
     $scope.map = map;
     $scope.map.setCenter(new google.maps.LatLng(-30.0573828,-51.1806058));
     $scope.loadOccurrences();
   };
-
-  $scope.title = 'Hello World!';
 
   $scope.loadOccurrences = function () {
     $http.get("http://saudeemfocoapi.herokuapp.com/occurrences")

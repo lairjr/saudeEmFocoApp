@@ -22,7 +22,7 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="js/controllers/mapscontroller.js"></script>
     <script src="js/directives.js"></script>
   </head>
 
@@ -32,7 +32,7 @@
     </ion-header-bar>
 
     <ion-content scroll="false">
-      <map on-create="mapCreated(map)"></map>
+      <map on-create="init(map)"></map>
     </ion-content>
 
     <ion-footer-bar class="bar-stable">
