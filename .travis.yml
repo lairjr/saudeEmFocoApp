@@ -2,6 +2,8 @@ language: node_js
 install:
   - npm install -g gulp
   - npm install -g karma-cli
+  - npm install -g bower
   - npm install
+  - bower install
 script:
   - npm run unit-test
