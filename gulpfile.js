@@ -50,10 +50,3 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
-
-gulp.task('test', function(done) {
-   var server = new karma.Server({
-     configFile: __dirname + '/test/karma.conf.js'
-   }, done);
-   server.start();
-});
