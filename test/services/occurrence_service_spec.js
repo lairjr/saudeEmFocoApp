@@ -24,4 +24,24 @@ describe('occurrence service', function() {
 
     httpBackend.flush();
   });
+
+  it('saves occurrence', function(done) {
+    var occurrence = {
+      description: 'Occurrence description'
+    };
+
+    var savedOccurrence = occurrence;
+    savedOccurrence['id'] = 'id';
+
+    httpBackend.expectPOST(baseUrl, occurrence).respond(savedOccurrence);
+    var result = occurrenceService.post(occurrence);
+
+    result.then(function (data) {
+      expect(data.description).toEqual(savedOccurrence.description);
+      expect(data.id).toEqual(savedOccurrence.id);
+      done();
+    });
+
+    httpBackend.flush();
+  });
 });
