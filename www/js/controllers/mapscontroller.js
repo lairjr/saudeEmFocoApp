@@ -1,10 +1,10 @@
 angular.module('starter.controllers', [])
 .controller('MapsCtrl', function($scope, $ionicLoading, $ionicModal, occurrenceService) {
-  $ionicModal.fromTemplateUrl('', {
+  $ionicModal.fromTemplateUrl('templates/modals/newoccurrence.html', {
     scope: null,
     animation: 'slide-in-up'
   }).then(function (modal) {
-    $scope.addNewOccurrenceModel = modal;
+    $scope.newOccurrenceModal = modal;
   });
 
   $scope.init = function(map) {
@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.addNewOccurrence = function () {
-    $scope.addNewOccurrenceModel.open();
+    $scope.newOccurrenceModal.show();
   };
 
   $scope.centerOnMe = function () {
