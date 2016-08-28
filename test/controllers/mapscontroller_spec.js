@@ -1,5 +1,5 @@
 describe('Controllers', function() {
-  var scope, ionicLoading, mockOccurrenceService, deferred;
+  var scope, ionicLoading, ionicModal, mockOccurrenceService, deferred, fakePromise, addOccurrenceModal;
 
   beforeEach(module('starter.controllers'));
 
@@ -15,7 +15,19 @@ describe('Controllers', function() {
       get: jasmine.createSpy('occurrence.get').and.returnValue(deferred.promise),
       save: jasmine.createSpy('occurrence.save').and.returnValue(deferred.promise)
     }
-    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, occurrenceService: mockOccurrenceService });
+    fakePromise = {
+      then: jasmine.createSpy('then')
+    }
+    ionicModal = {
+      fromTemplateUrl: jasmine.createSpy('fromTemplateUrl').and.returnValue(fakePromise)
+    }
+    addOccurrenceModal = {
+      open: jasmine.createSpy('open')
+    }
+    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $ionicModal: ionicModal, occurrenceService: mockOccurrenceService });
+
+    var func = fakePromise.then.calls.argsFor(0)[0];
+    func(addOccurrenceModal);
   }));
 
   describe('init', function () {
@@ -45,6 +57,16 @@ describe('Controllers', function() {
       expect(mockOccurrenceService.get).toHaveBeenCalled();
       expect(google.maps.LatLng.calls.argsFor(1)).toEqual([loadedOccurrence.location.coordinates[0], loadedOccurrence.location.coordinates[1]]);
       expect(google.maps.Marker.calls.argsFor(0)).toEqual([{ map: map, position: { foo: 'foo' } }]);
+    });
+  });
+
+  describe('addNewOccurrence', function () {
+    beforeEach(function() {
+      scope.addNewOccurrence();
+    });
+
+    it('opens add new occurrence modal', function () {
+      expect(addOccurrenceModal.open).toHaveBeenCalled();
     });
   });
 });

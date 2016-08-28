@@ -1,5 +1,12 @@
 angular.module('starter.controllers', [])
-.controller('MapsCtrl', function($scope, $ionicLoading, occurrenceService) {
+.controller('MapsCtrl', function($scope, $ionicLoading, $ionicModal, occurrenceService) {
+  $ionicModal.fromTemplateUrl('', {
+    scope: null,
+    animation: 'slide-in-up'
+  }).then(function (modal) {
+    $scope.addNewOccurrenceModel = modal;
+  });
+
   $scope.init = function(map) {
     $scope.map = map;
     $scope.map.setCenter(new google.maps.LatLng(-30.0573828,-51.1806058));
@@ -11,12 +18,12 @@ angular.module('starter.controllers', [])
 
     occurrencesPromise.then(function (occurrences) {
       angular.forEach(occurrences, function (occurrence) {
-        $scope.addOccurrence(occurrence);
+        $scope.pinOccurrence(occurrence);
       });
     });
   };
 
-  $scope.addOccurrence = function (occurrence) {
+  $scope.pinOccurrence = function (occurrence) {
     var marker = new google.maps.Marker({
       map: $scope.map,
       position: new google.maps.LatLng(occurrence.location.coordinates[0], occurrence.location.coordinates[1])
@@ -30,6 +37,10 @@ angular.module('starter.controllers', [])
     google.maps.event.addListener(marker, 'click', function() {
       infoWindow.open($scope.map, marker);
     });
+  };
+
+  $scope.addNewOccurrence = function () {
+    $scope.addNewOccurrenceModel.open();
   };
 
   $scope.centerOnMe = function () {
