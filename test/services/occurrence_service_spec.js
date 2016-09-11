@@ -25,15 +25,28 @@ describe('occurrence service', function() {
     httpBackend.flush();
   });
 
-  it('saves occurrence', function(done) {
+  it('saves occurrence properly', function(done) {
     var occurrence = {
-      description: 'Occurrence description'
+      description: 'Occurrence description',
+      location: {
+        lat: 1,
+        lng: 2
+      }
     };
+
+    var contractOccurrence = {
+      description: 'Occurrence description',
+      status: 'ACTIVE',
+      location: {
+        type: 'Point',
+        coordinates: [1, 2]
+      }
+    }
 
     var savedOccurrence = occurrence;
     savedOccurrence['id'] = 'id';
 
-    httpBackend.expectPOST(baseUrl, occurrence).respond(savedOccurrence);
+    httpBackend.expectPOST(baseUrl, contractOccurrence).respond(savedOccurrence);
     var result = occurrenceService.post(occurrence);
 
     result.then(function (data) {
