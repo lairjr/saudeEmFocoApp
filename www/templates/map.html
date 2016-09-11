@@ -1,6 +1,7 @@
 <ion-view view-title="Map">
-  <ion-header-bar class="bar-stable">
-    <h1 class="title">Map</h1>
+  <ion-header-bar class="bar bar-header">
+    <button class="button button-icon icon ion-navicon"></button>
+    <h1 class="title">Mapa</h1>
   </ion-header-bar>
 
   <ion-content scroll="false">
@@ -8,6 +9,19 @@
   </ion-content>
 
   <ion-footer-bar class="bar-stable">
-    <a ng-click="addNewOccurrence()" class="button button-icon icon ion-navigate">Adicionar Ocorrencia</a>
+    <div class="tabs tabs-icon-top">
+      <a ng-click="addNewOccurrence()" class="tab-item">
+        <i class="icon ion-location"></i>
+        Denunciar
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-medkit"></i>
+        Buscar Hospital
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-chatbubble-working"></i>
+        Noticias
+      </a>
+    </div>
   </ion-footer-bar>
 </ion-view>
