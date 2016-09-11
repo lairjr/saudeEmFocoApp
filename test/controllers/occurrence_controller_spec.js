@@ -1,5 +1,5 @@
 describe('Occurrence Controller', function() {
-  var scope, fakePromise, mockOccurrenceService, ionicPopup, deferred;
+  var scope, mockOccurrenceService, ionicPopup, deferred;
 
   beforeEach(module('starter.controllers'));
 
@@ -7,20 +7,20 @@ describe('Occurrence Controller', function() {
     scope = $rootScope.$new();
     deferred = _$q_.defer();
 
-    fakePromise = {
-      then: jasmine.createSpy('then')
-    }
     mockOccurrenceService = {
       post: jasmine.createSpy('occurrence.save').and.returnValue(deferred.promise)
     }
     ionicPopup = {
-      alert: jasmine.createSpy('fromTemplateUrl').and.returnValue(fakePromise)
+      alert: jasmine.createSpy('fromTemplateUrl').and.returnValue(deferred.promise)
     }
     stateParams = {
       lat: 1,
       lng: 3
     };
-    $controller('OccurrenceCtrl', { $scope: scope, $ionicPopup: ionicPopup, $stateParams: stateParams, occurrenceService: mockOccurrenceService });
+    state = {
+      go: jasmine.createSpy('state.go')
+    }
+    $controller('OccurrenceCtrl', { $scope: scope, $ionicPopup: ionicPopup, $stateParams: stateParams, $state: state, occurrenceService: mockOccurrenceService });
   }));
 
   describe('save', function () {
@@ -43,6 +43,12 @@ describe('Occurrence Controller', function() {
         title: jasmine.any(String),
         template: jasmine.any(String)
       }));
+    });
+
+    it('navigates to map', function () {
+      deferred.resolve('foo');
+      scope.$apply();
+      expect(state.go).toHaveBeenCalledWith('map');
     });
   });
 });

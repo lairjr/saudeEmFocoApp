@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('OccurrenceCtrl', function($scope, $ionicPopup, $stateParams, occurrenceService) {
+.controller('OccurrenceCtrl', function($scope, $ionicPopup, $stateParams, $state, occurrenceService) {
   $scope.occurrence = {
     description: '',
     location: {
@@ -14,6 +14,10 @@ angular.module('starter.controllers')
       var successAlert = $ionicPopup.alert({
         title: 'Obrigado',
         template: 'Ocorrencia inserida com sucesso'
+      });
+
+      successAlert.then(function () {
+        $state.go('map');
       });
     });
   };
