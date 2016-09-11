@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 .controller('MapsCtrl', function($scope, $ionicLoading, $ionicModal, occurrenceService) {
   $ionicModal.fromTemplateUrl('templates/modals/newoccurrence.html', {
     scope: $scope,

@@ -8,12 +8,3 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     }
   });
 })
-
-.config(function ($stateProvider, $urlRouterProvider) {
-  $stateProvider.state('map', {
-    url: '/',
-    templateUrl: 'templates/map.html'
-  });
-
-  $urlRouterProvider.otherwise("/");
-})
