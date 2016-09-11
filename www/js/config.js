@@ -7,9 +7,9 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       controller: 'MapsCtrl'
     })
     .state('occurrence', {
-      url: '/occurrence',
+      url: '/occurrence/:lat/:lng',
       templateUrl: 'templates/occurence.html',
-      controller: 'OccurrenceFormCtrl'
+      controller: 'OccurrenceCtrl'
     });
 
   $urlRouterProvider.otherwise("/");

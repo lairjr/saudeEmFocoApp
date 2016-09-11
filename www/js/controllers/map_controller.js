@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MapsCtrl', function($scope, $ionicLoading, $ionicModal, occurrenceService) {
+.controller('MapsCtrl', function($scope, $ionicLoading, $ionicModal, $state, occurrenceService) {
   $ionicModal.fromTemplateUrl('templates/modals/newoccurrence.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -40,7 +40,8 @@ angular.module('starter.controllers')
   };
 
   $scope.addNewOccurrence = function () {
-    $scope.newOccurrenceModal.show();
+    var position = $scope.map.getCenter();
+    $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
   };
 
   $scope.centerOnMe = function () {

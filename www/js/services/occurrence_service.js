@@ -1,6 +1,17 @@
 angular.module('starter.services', []).service('occurrenceService', function($resource, $q) {
   var occurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences');
 
+  function parseOccurrence(occurrenceVM) {
+    return {
+      description: occurrenceVM.description,
+      status: 'ACTIVE',
+      location: {
+        type: 'Point',
+        coordinates: [occurrenceVM.location.lat, occurrenceVM.location.lng]
+      }
+    };
+  };
+
   return {
     get: function() {
       var deferred = $q.defer();
@@ -16,7 +27,9 @@ angular.module('starter.services', []).service('occurrenceService', function($re
     post: function(occurrence) {
       var deferred = $q.defer();
 
-      occurrenceSvc.save(occurrence).$promise.then(function (data) {
+      var occurrenceData = parseOccurrence(occurrence);
+
+      occurrenceSvc.save(occurrenceData).$promise.then(function (data) {
         deferred.resolve(data);
       }, function (error) {
         deferred.reject(error);
