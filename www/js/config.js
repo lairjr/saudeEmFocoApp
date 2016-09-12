@@ -10,6 +10,14 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       url: '/occurrence/:lat/:lng',
       templateUrl: 'templates/occurence.html',
       controller: 'OccurrenceCtrl'
+    })
+    .state('informations', {
+      url: '/informations',
+      templateUrl: 'templates/informations.html'
+    })
+    .state('symptomsTest', {
+      url: '/symptoms-test',
+      templateUrl: 'templates/symptoms_test.html'
     });
 
   $urlRouterProvider.otherwise("/");
