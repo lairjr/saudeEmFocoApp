@@ -8,7 +8,6 @@ angular.module('starter.controllers')
     var promise = placesService.getByPosition($stateParams.lng, $stateParams.lat);
 
     promise.then(function (places) {
-      console.log(places);
     });
   };
 });

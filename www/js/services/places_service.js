@@ -1,5 +1,5 @@
-angular.module('starter.services', []).service('placesService', function($resource, $q) {
-  var placesSvc = $resource('http://saudeemfocoapi.herokuapp.com/places/:lng/:lat');
+angular.module('starter.services').service('placesService', function($resource, $q) {
+  var placesSvc = $resource('http://saudeemfocoapi.herokuapp.com/places/:lat/:lng');
 
   return {
     getByPosition: function(lng, lat) {
