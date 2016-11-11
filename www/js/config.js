@@ -18,6 +18,11 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     .state('symptomsTest', {
       url: '/symptoms-test',
       templateUrl: 'templates/symptoms_test.html'
+    })
+    .state('healthcarePlaces', {
+      url: '/healthcare-places/:lat/:lng',
+      templateUrl: 'templates/healthcare_places.html',
+      controller: 'HealthcarePlacesCtrl'
     });
 
   $urlRouterProvider.otherwise("/");

@@ -44,6 +44,11 @@ angular.module('starter.controllers')
     $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
   };
 
+  $scope.goToHealthcarePlaces = function () {
+    var position = $scope.map.getCenter();
+    $state.go('healthcarePlaces', { lng: position.lng(), lat: position.lat() });
+  };
+
   $scope.centerOnMe = function () {
     console.log("Centering");
     if (!$scope.map) {
