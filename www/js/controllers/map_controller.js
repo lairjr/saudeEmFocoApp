@@ -39,7 +39,7 @@ angular.module('starter.controllers')
     });
   };
 
-  $scope.addNewOccurrence = function () {
+  $scope.goToOccurrence = function () {
     var position = $scope.map.getCenter();
     $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
   };

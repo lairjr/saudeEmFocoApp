@@ -62,7 +62,7 @@ describe('Map Controller', function() {
     });
   });
 
-  describe('addNewOccurrence', function () {
+  describe('goToOccurrence', function () {
     beforeEach(function () {
       var fakePosition = {
         lng: function () {
@@ -75,7 +75,7 @@ describe('Map Controller', function() {
       scope.map = {
         getCenter: jasmine.createSpy('map.getCenter').and.returnValue(fakePosition)
       }
-      scope.addNewOccurrence();
+      scope.goToOccurrence();
     });
 
     it('navigates to occurrence', function () {
