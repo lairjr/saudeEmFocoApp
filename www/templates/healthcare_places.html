@@ -4,15 +4,12 @@
 </ion-header-bar>
 
 <ion-content ng-init="init()">
-  <div class="card">
-    <div class="item item-text-wrap">
-      Blevers
+  <div class="card" ng-repeat="place in placeList">
+    <div class="item item-divider">
+      {{ place.name }}
     </div>
     <div class="item item-text-wrap">
-      Trevers
-    </div>
-    <div class="item item-text-wrap">
-      Revers
+      {{ place.vicinity }}
     </div>
   </div>
 </ion-content>
