@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MapsCtrl', function($scope, $ionicLoading, $state, occurrenceService) {
+.controller('MapsCtrl', function($scope, $ionicLoading, $state, occurrenceService, placesService) {
   $scope.centerMark = {}
   $scope.isCreating = false;
 
@@ -7,6 +7,59 @@ angular.module('starter.controllers')
     $scope.map = map;
     $scope.centerOnMe();
     $scope.loadOccurrences();
+  };
+
+  $scope.centerOnMe = function () {
+    if (!$scope.map) {
+      return;
+    }
+
+    $scope.loading = $ionicLoading.show({
+      content: 'Obtendo posição...',
+      showBackdrop: false
+    });
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var currentPosition = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+      var currentMark = new google.maps.Marker({
+        map: $scope.map,
+        position: currentPosition,
+        icon: 'img/currentMark.gif'
+      });
+
+      $scope.map.setCenter(currentPosition);
+      $scope.loading.hide();
+      $scope.loadHealthcarePlaces();
+    }, function (error) {
+      console.log('Unable to get location: ' + error.message);
+    });
+  };
+
+  $scope.loadHealthcarePlaces = function () {
+    var position = $scope.map.getCenter();
+    var healthcarePlacesPromise = placesService.getByPosition(position.lng(), position.lat());
+
+    $scope.loading = $ionicLoading.show({
+      content: 'Obtendo locais de atendimento...',
+      showBackdrop: false
+    });
+
+    healthcarePlacesPromise.then(function (places) {
+      angular.forEach(places, function (place) {
+        $scope.pinHealthcarePlace(place);
+      });
+
+      $scope.loading.hide();
+    });
+  };
+
+  $scope.pinHealthcarePlace = function (place) {
+    var marker = new google.maps.Marker({
+      map: $scope.map,
+      position: new google.maps.LatLng(place.geometry.location.lat, place.geometry.lng),
+      icon: 'img/placeMark.png'
+    });
   };
 
   $scope.loadOccurrences = function () {
@@ -69,31 +122,5 @@ angular.module('starter.controllers')
     google.maps.event.clearListeners($scope.centerMark, 'click');
     google.maps.event.clearListeners($scope.map, 'center_changed');
     $scope.centerMark = undefined;
-  };
-
-  $scope.centerOnMe = function () {
-    if (!$scope.map) {
-      return;
-    }
-
-    $scope.loading = $ionicLoading.show({
-      content: 'Obtendo posição...',
-      showBackdrop: false
-    });
-
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      var currentPosition = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-
-      var currentMark = new google.maps.Marker({
-        map: $scope.map,
-        position: currentPosition,
-        icon: 'img/tooltip_pulse.gif'
-      });
-
-      $scope.map.setCenter(currentPosition);
-      $scope.loading.hide();
-    }, function (error) {
-      alert('Unable to get location: ' + error.message);
-    });
   };
 });
