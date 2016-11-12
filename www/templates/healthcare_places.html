@@ -4,7 +4,7 @@
 </ion-header-bar>
 
 <ion-content ng-init="init()">
-  <div class="list card" ng-repeat="place in placeList">
+  <div class="list card" ng-repeat="place in placeList | orderBy:'transportDuration'">
     <div class="item">
       <h2>{{ place.name }}</h2>
     </div>
