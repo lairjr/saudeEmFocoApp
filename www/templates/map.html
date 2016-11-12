@@ -9,9 +9,13 @@
 
 <ion-footer-bar class="bar-stable">
   <div class="tabs tabs-icon-top">
-    <a ng-click="goToOccurrence()" class="tab-item">
+    <a ng-if="!isCreating" ng-click="displayCenter()" class="tab-item">
       <i class="icon ion-location"></i>
       Denunciar
+    </a>
+    <a ng-if="isCreating" ng-click="hideCenter()" class="tab-item">
+      <i class="icon ion-location"></i>
+      Cancelar
     </a>
     <a ng-click="goToHealthcarePlaces()" class="tab-item">
       <i class="icon ion-medkit"></i>
