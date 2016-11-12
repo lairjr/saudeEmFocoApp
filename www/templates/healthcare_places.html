@@ -13,11 +13,15 @@
         {{ place.vicinity }}
       </p>
       <p>
-        <button class="button button-small button-balanced">
+        <button ng-if="!place.distanceMeasure" class="button button-small button-assertive">
+          <i class="icon ion-close-round"></i>
+          Rota não encontrada
+        </button>
+        <button ng-if="place.distanceMeasure" class="button button-small button-balanced">
           <i class="icon ion-arrow-graph-up-right"></i>
           {{ place.distanceMeasure }}
         </button>
-        <button class="button button-small button-dark">
+        <button ng-if="place.transportDuration" class="button button-small button-dark">
           <i class="icon ion-model-s"></i>
           {{ displayTime(place.transportDuration) }}
         </button>

@@ -21,6 +21,7 @@ describe('Map Controller', function() {
       go: jasmine.createSpy('state.go')
     }
     $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $state: state, occurrenceService: mockOccurrenceService });
+    spyOn(scope, 'centerOnMe');
   }));
 
   describe('init', function () {
@@ -41,10 +42,12 @@ describe('Map Controller', function() {
     });
 
     it('sets map position', function () {
-      expect(scope.map.setCenter).toHaveBeenCalled();
+      expect(scope.centerOnMe).toHaveBeenCalled();
     });
 
     it('shows occurrence data', function () {
+      scope.loadOccurrences();
+
       deferred.resolve([loadedOccurrence]);
       scope.$apply();
       expect(mockOccurrenceService.get).toHaveBeenCalled();

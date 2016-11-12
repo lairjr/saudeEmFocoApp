@@ -5,7 +5,7 @@ angular.module('starter.controllers')
 
   $scope.init = function(map) {
     $scope.map = map;
-    $scope.map.setCenter(new google.maps.LatLng(-30.0573828,-51.1806058));
+    $scope.centerOnMe();
     $scope.loadOccurrences();
   };
 
@@ -72,19 +72,25 @@ angular.module('starter.controllers')
   };
 
   $scope.centerOnMe = function () {
-    console.log("Centering");
     if (!$scope.map) {
       return;
     }
 
     $scope.loading = $ionicLoading.show({
-      content: 'Getting current location...',
+      content: 'Obtendo posição...',
       showBackdrop: false
     });
 
     navigator.geolocation.getCurrentPosition(function (pos) {
-      console.log('Got pos', pos);
-      $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+      var currentPosition = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+      var currentMark = new google.maps.Marker({
+        map: $scope.map,
+        position: currentPosition,
+        icon: 'img/tooltip_pulse.gif'
+      });
+
+      $scope.map.setCenter(currentPosition);
       $scope.loading.hide();
     }, function (error) {
       alert('Unable to get location: ' + error.message);
