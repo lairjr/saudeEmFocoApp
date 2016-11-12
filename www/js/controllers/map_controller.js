@@ -1,11 +1,7 @@
 angular.module('starter.controllers')
-.controller('MapsCtrl', function($scope, $ionicLoading, $ionicModal, $state, occurrenceService) {
-  $ionicModal.fromTemplateUrl('templates/modals/newoccurrence.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.newOccurrenceModal = modal;
-  });
+.controller('MapsCtrl', function($scope, $ionicLoading, $state, occurrenceService) {
+  $scope.centerMark = {}
+  $scope.isCreating = false;
 
   $scope.init = function(map) {
     $scope.map = map;
@@ -26,7 +22,8 @@ angular.module('starter.controllers')
   $scope.pinOccurrence = function (occurrence) {
     var marker = new google.maps.Marker({
       map: $scope.map,
-      position: new google.maps.LatLng(occurrence.location.coordinates[0], occurrence.location.coordinates[1])
+      position: new google.maps.LatLng(occurrence.location.coordinates[0], occurrence.location.coordinates[1]),
+      icon: 'img/occurrenceMark.png'
     });
 
     var content = "<h4>" + occurrence.description + "</h4>";
@@ -39,9 +36,39 @@ angular.module('starter.controllers')
     });
   };
 
-  $scope.addNewOccurrence = function () {
+  $scope.goToOccurrence = function () {
     var position = $scope.map.getCenter();
     $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
+  };
+
+  $scope.goToHealthcarePlaces = function () {
+    var position = $scope.map.getCenter();
+    $state.go('healthcarePlaces', { lng: position.lng(), lat: position.lat() });
+  };
+
+  $scope.displayCenter = function () {
+    $scope.isCreating = true;
+    $scope.centerMark = new google.maps.Marker({
+      map: $scope.map,
+      position: $scope.map.getCenter(),
+      icon: 'img/centerMark.png'
+    });
+
+    google.maps.event.addListener($scope.centerMark, 'click', function() {
+      $scope.goToOccurrence();
+    });
+
+    $scope.map.addListener('center_changed', function() {
+      $scope.centerMark.setPosition($scope.map.getCenter());
+    });
+  };
+
+  $scope.hideCenter = function () {
+    $scope.isCreating = false;
+    $scope.centerMark.setMap(null);
+    google.maps.event.clearListeners($scope.centerMark, 'click');
+    google.maps.event.clearListeners($scope.map, 'center_changed');
+    $scope.centerMark = undefined;
   };
 
   $scope.centerOnMe = function () {

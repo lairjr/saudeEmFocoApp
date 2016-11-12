@@ -1,5 +1,5 @@
 describe('Map Controller', function() {
-  var scope, ionicLoading, ionicModal, mockOccurrenceService, deferred, fakePromise, newOccurrenceModal;
+  var scope, ionicLoading, ionicModal, mockOccurrenceService, deferred;
 
   beforeEach(module('starter.controllers'));
 
@@ -14,22 +14,13 @@ describe('Map Controller', function() {
     mockOccurrenceService = {
       get: jasmine.createSpy('occurrence.get').and.returnValue(deferred.promise)
     }
-    fakePromise = {
-      then: jasmine.createSpy('then')
-    }
-    ionicModal = {
-      fromTemplateUrl: jasmine.createSpy('fromTemplateUrl').and.returnValue(fakePromise)
-    }
     newOccurrenceModal = {
       show: jasmine.createSpy('show')
     }
     state = {
       go: jasmine.createSpy('state.go')
     }
-    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $ionicModal: ionicModal, $state: state, occurrenceService: mockOccurrenceService });
-
-    var func = fakePromise.then.calls.argsFor(0)[0];
-    func(newOccurrenceModal);
+    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $state: state, occurrenceService: mockOccurrenceService });
   }));
 
   describe('init', function () {
@@ -58,11 +49,11 @@ describe('Map Controller', function() {
       scope.$apply();
       expect(mockOccurrenceService.get).toHaveBeenCalled();
       expect(google.maps.LatLng.calls.argsFor(1)).toEqual([loadedOccurrence.location.coordinates[0], loadedOccurrence.location.coordinates[1]]);
-      expect(google.maps.Marker.calls.argsFor(0)).toEqual([{ map: map, position: { foo: 'foo' } }]);
+      expect(google.maps.Marker.calls.argsFor(0)).toEqual([jasmine.objectContaining({ map: map, position: { foo: 'foo' } })]);
     });
   });
 
-  describe('addNewOccurrence', function () {
+  describe('goToOccurrence', function () {
     beforeEach(function () {
       var fakePosition = {
         lng: function () {
@@ -75,7 +66,7 @@ describe('Map Controller', function() {
       scope.map = {
         getCenter: jasmine.createSpy('map.getCenter').and.returnValue(fakePosition)
       }
-      scope.addNewOccurrence();
+      scope.goToOccurrence();
     });
 
     it('navigates to occurrence', function () {

@@ -1,0 +1,31 @@
+<ion-header-bar class="bar bar-header">
+  <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  <h1 class="title">Hospitais Próximos</h1>
+</ion-header-bar>
+
+<ion-content ng-init="init()">
+  <div class="list card" ng-repeat="place in placeList | orderBy:'transportDuration'">
+    <div class="item">
+      <h2>{{ place.name }}</h2>
+    </div>
+    <div class="item item-body">
+      <p>
+        {{ place.vicinity }}
+      </p>
+      <p>
+        <button class="button button-small button-balanced">
+          <i class="icon ion-arrow-graph-up-right"></i>
+          {{ place.distanceMeasure }}
+        </button>
+        <button class="button button-small button-dark">
+          <i class="icon ion-model-s"></i>
+          {{ displayTime(place.transportDuration) }}
+        </button>
+        <button class="button button-small button-dark" ng-if="place.waitingTime > 0">
+          <i class="icon ion-clock"></i>
+          {{ displayTime(place.waitingTime) }}
+        </button>
+      </p>
+    </div>
+  </div>
+</ion-content>

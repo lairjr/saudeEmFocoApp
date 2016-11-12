@@ -1,4 +1,4 @@
-angular.module('starter.services', []).service('occurrenceService', function($resource, $q) {
+angular.module('starter.services').service('occurrenceService', function($resource, $q) {
   var occurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences');
 
   function parseOccurrence(occurrenceVM) {
