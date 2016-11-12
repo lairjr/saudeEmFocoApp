@@ -5,7 +5,7 @@ angular.module('starter.controllers')
 
   $scope.init = function(map) {
     $scope.map = map;
-    $scope.map.setCenter(new google.maps.LatLng(-30.0573828,-51.1806058));
+    $scope.centerOnMe();
     $scope.loadOccurrences();
   };
 
