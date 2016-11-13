@@ -7,6 +7,9 @@ angular.module('starter.controllers')
     $scope.map = map;
     $scope.centerOnMe();
     $scope.loadOccurrences();
+    $scope.map.addListener('center_changed', function() {
+      $scope.loadHealthcarePlaces();
+    });
   };
 
   $scope.centerOnMe = function () {
@@ -40,25 +43,27 @@ angular.module('starter.controllers')
     var position = $scope.map.getCenter();
     var healthcarePlacesPromise = placesService.getByPosition(position.lng(), position.lat());
 
-    $scope.loading = $ionicLoading.show({
-      content: 'Obtendo locais de atendimento...',
-      showBackdrop: false
-    });
-
     healthcarePlacesPromise.then(function (places) {
       angular.forEach(places, function (place) {
         $scope.pinHealthcarePlace(place);
       });
-
-      $scope.loading.hide();
     });
   };
 
   $scope.pinHealthcarePlace = function (place) {
-    var marker = new google.maps.Marker({
+    var placeMarker = new google.maps.Marker({
       map: $scope.map,
-      position: new google.maps.LatLng(place.geometry.location.lat, place.geometry.lng),
+      position: new google.maps.LatLng(place.geometry.location.lat, place.geometry.location.lng),
       icon: 'img/placeMark.png'
+    });
+
+    var content = "<h4>" + place.name + "</h4>";
+    var infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
+
+    google.maps.event.addListener(placeMarker, 'click', function() {
+      infoWindow.open($scope.map, placeMarker);
     });
   };
 
