@@ -1,5 +1,5 @@
 describe('Map Controller', function() {
-  var scope, ionicLoading, ionicModal, mockOccurrenceService, deferred;
+  var scope, ionicLoading, ionicModal, mockOccurrenceService, mockPlacesService, deferred;
 
   beforeEach(module('starter.controllers'));
 
@@ -11,6 +11,9 @@ describe('Map Controller', function() {
     ionicLoading = {
       show: jasmine.createSpy('show')
     };
+    mockPlacesService = {
+      getByPosition: jasmine.createSpy('occurrence.save').and.returnValue(deferred.promise)
+    };
     mockOccurrenceService = {
       get: jasmine.createSpy('occurrence.get').and.returnValue(deferred.promise)
     }
@@ -20,7 +23,7 @@ describe('Map Controller', function() {
     state = {
       go: jasmine.createSpy('state.go')
     }
-    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $state: state, occurrenceService: mockOccurrenceService });
+    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $state: state, occurrenceService: mockOccurrenceService, placesService: mockPlacesService });
     spyOn(scope, 'centerOnMe');
   }));
 
@@ -35,7 +38,8 @@ describe('Map Controller', function() {
 
     beforeEach(function () {
       map = {
-        setCenter: jasmine.createSpy('map.setCenter')
+        setCenter: jasmine.createSpy('map.setCenter'),
+        addListener: jasmine.createSpy('map.addListener')
       };
 
       scope.init(map);
