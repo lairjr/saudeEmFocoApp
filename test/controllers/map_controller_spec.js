@@ -1,5 +1,5 @@
 describe('Map Controller', function() {
-  var scope, ionicLoading, ionicModal, mockOccurrenceService, mockPlacesService, deferred;
+  var scope, ionicLoading, ionicModal, ionicPopup, mockOccurrenceService, mockPlacesService, deferred;
 
   beforeEach(module('starter.controllers'));
 
@@ -9,6 +9,9 @@ describe('Map Controller', function() {
     scope = $rootScope.$new();
     deferred = _$q_.defer();
     ionicLoading = {
+      show: jasmine.createSpy('show')
+    };
+    ionicPopup = {
       show: jasmine.createSpy('show')
     };
     mockPlacesService = {
@@ -23,7 +26,7 @@ describe('Map Controller', function() {
     state = {
       go: jasmine.createSpy('state.go')
     }
-    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $state: state, occurrenceService: mockOccurrenceService, placesService: mockPlacesService });
+    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $ionicPopup: ionicPopup, $state: state, occurrenceService: mockOccurrenceService, placesService: mockPlacesService });
     spyOn(scope, 'centerOnMe');
   }));
 
