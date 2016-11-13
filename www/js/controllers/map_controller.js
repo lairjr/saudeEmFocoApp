@@ -142,25 +142,20 @@ angular.module('starter.controllers')
         {
           text: 'Nao',
           onTap: function (e) {
-            return 'nao';
+            return false;
           }
         },
         {
           text: 'Sim',
           type: 'button-positive',
           onTap: function () {
-            return 'sim';
+            return true;
           }
         }
       ]
     });
 
     confirmPopup.then(function (res) {
-      if(res) {
-       console.log('You are sure');
-      } else {
-       console.log('You are not sure');
-      }
     });
   };
 
