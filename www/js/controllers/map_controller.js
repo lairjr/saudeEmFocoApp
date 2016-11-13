@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MapsCtrl', function($scope, $ionicLoading, $state, occurrenceService, placesService) {
+.controller('MapsCtrl', function($scope, $ionicLoading, $ionicPopup, $state, occurrenceService, placesService) {
   $scope.centerMark = {}
   $scope.isCreating = false;
 
@@ -47,6 +47,12 @@ angular.module('starter.controllers')
       angular.forEach(places, function (place) {
         $scope.pinHealthcarePlace(place);
       });
+      var centerPlace = getCenterPlace(places);
+      if (centerPlace) {
+        $scope.displayWaitingTimePopup(centerPlace);
+      }
+
+        $scope.displayWaitingTimePopup(places[0]);
     });
   };
 
@@ -89,7 +95,7 @@ angular.module('starter.controllers')
       content: content
     });
 
-    google.maps.event.addListener(marker, 'click', function() {
+    google.maps.event.addListener(marker, 'click', function () {
       infoWindow.open($scope.map, marker);
     });
   };
@@ -127,5 +133,43 @@ angular.module('starter.controllers')
     google.maps.event.clearListeners($scope.centerMark, 'click');
     google.maps.event.clearListeners($scope.map, 'center_changed');
     $scope.centerMark = undefined;
+  };
+
+  $scope.displayWaitingTimePopup = function (place) {
+    var confirmPopup = $ionicPopup.show({
+      title: 'Está em atendimento?',
+      buttons: [
+        {
+          text: 'Nao',
+          onTap: function (e) {
+            return 'nao';
+          }
+        },
+        {
+          text: 'Sim',
+          type: 'button-positive',
+          onTap: function () {
+            return 'sim';
+          }
+        }
+      ]
+    });
+
+    confirmPopup.then(function (res) {
+      if(res) {
+       console.log('You are sure');
+      } else {
+       console.log('You are not sure');
+      }
+    });
+  };
+
+  function getCenterPlace (places) {
+    for (var i = 0; i < places.length; i++) {
+      if (places[i].distanceMeasure && parseFloat(places[i].distanceMeasure) < 0.5) {
+        return places[i];
+      }
+    };
+    return undefined;
   };
 });
