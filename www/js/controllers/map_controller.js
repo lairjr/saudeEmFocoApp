@@ -110,6 +110,11 @@ angular.module('starter.controllers')
     $state.go('healthcarePlaces', { lng: position.lng(), lat: position.lat() });
   };
 
+  $scope.goToPlace = function (placeId) {
+    var position = $scope.map.getCenter();
+    $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId });
+  };
+
   $scope.displayCenter = function () {
     $scope.isCreating = true;
     $scope.centerMark = new google.maps.Marker({
@@ -155,7 +160,8 @@ angular.module('starter.controllers')
       ]
     });
 
-    confirmPopup.then(function (res) {
+    $scope.confirmPopup.then(function (res) {
+      $scope.goToPlace(place.place_id);
     });
   };
 
