@@ -160,8 +160,10 @@ angular.module('starter.controllers')
       ]
     });
 
-    $scope.confirmPopup.then(function (res) {
-      $scope.goToPlace(place.place_id);
+    confirmPopup.then(function (res) {
+      if (res) {
+        $scope.goToPlace(place.place_id); 
+      }
     });
   };
 
