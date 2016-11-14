@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-.controller('PlaceCtrl', function($scope, $stateParams, placesService) {
-  $scope.waitingTime = 0;
+.controller('PlaceCtrl', function($scope, $state, $stateParams, $ionicPopup, placesService) {
+  $scope.time = 130;
 
   $scope.init = function () {
     $scope.loadPlace();
@@ -21,6 +21,24 @@ angular.module('starter.controllers')
         '&photoreference=' + place.photos[0].photo_reference +
         '&key=AIzaSyDslrUNBlR4yqDLLdAvgdqfvyIMtjee4fQ';
     }
+  };
+
+  $scope.saveWaitingTime = function (time) {
+    var waitingTimeData = {
+      place_id: $scope.place.place_id,
+      waitingTime: time
+    };
+    var promise = placesService.post(waitingTimeData);
+    promise.then(function () {
+      var successAlert = $ionicPopup.alert({
+        title: 'Obrigado',
+        template: 'Tempo de espera inserido com sucesso'
+      });
+
+      successAlert.then(function () {
+        $scope.init();
+      });
+    });
   };
 
   function findByPlaceId(places, placeId) {

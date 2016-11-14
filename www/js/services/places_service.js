@@ -4,7 +4,7 @@ angular.module('starter.services').service('placesService', function($resource, 
   function parseWaitingTime (data) {
     return {
       googleId: data.place_id,
-      placeData: data.waitingTime
+      waitingTime: data.waitingTime
     };
   };
 
