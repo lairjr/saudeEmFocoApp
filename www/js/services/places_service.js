@@ -1,5 +1,11 @@
 angular.module('starter.services').service('placesService', function($resource, $q) {
-  var placesSvc = $resource('http://saudeemfocoapi.herokuapp.com/places/:lat/:lng');
+  var placesSvc = $resource('http://saudeemfocoapi.herokuapp.com/places/:lat/:lng', null,
+    {
+      post: {
+        method: 'POST',
+        url: 'http://saudeemfocoapi.herokuapp.com/places/:username'
+      }
+    });
 
   function parseWaitingTime (data) {
     return {
@@ -20,12 +26,12 @@ angular.module('starter.services').service('placesService', function($resource, 
 
       return deferred.promise;
     },
-    post: function (waitingTimeData) {
+    post: function (waitingTimeData, username) {
       var deferred = $q.defer();
 
       var placeData = parseWaitingTime(waitingTimeData);
 
-      placesSvc.save(placeData).$promise.then(function (data) {
+      placesSvc.post({ username: username }, placeData).$promise.then(function (data) {
         deferred.resolve(data);
       }, function (error) {
         deferred.reject(error);
