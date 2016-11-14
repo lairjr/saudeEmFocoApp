@@ -1,5 +1,5 @@
 angular.module('starter.services').service('occurrenceService', function($resource, $q) {
-  var occurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences');
+  var occurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences/:username');
 
   function parseOccurrence(occurrenceVM) {
     return {
@@ -24,12 +24,12 @@ angular.module('starter.services').service('occurrenceService', function($resour
 
       return deferred.promise;
     },
-    post: function(occurrence) {
+    post: function(occurrence, username) {
       var deferred = $q.defer();
 
       var occurrenceData = parseOccurrence(occurrence);
 
-      occurrenceSvc.save(occurrenceData).$promise.then(function (data) {
+      occurrenceSvc.save({ username: username }, occurrenceData).$promise.then(function (data) {
         deferred.resolve(data);
       }, function (error) {
         deferred.reject(error);
