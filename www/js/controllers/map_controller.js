@@ -33,13 +33,13 @@ angular.module('starter.controllers')
 
       $scope.map.setCenter(currentPosition);
       $scope.loading.hide();
-      $scope.loadHealthcarePlaces();
+      $scope.loadHealthcarePlaces(true);
     }, function (error) {
       console.log('Unable to get location: ' + error.message);
     });
   };
 
-  $scope.loadHealthcarePlaces = function () {
+  $scope.loadHealthcarePlaces = function (hasCheckCurrentPosition) {
     var position = $scope.map.getCenter();
     var healthcarePlacesPromise = placesService.getByPosition(position.lng(), position.lat());
 
@@ -47,12 +47,13 @@ angular.module('starter.controllers')
       angular.forEach(places, function (place) {
         $scope.pinHealthcarePlace(place);
       });
-      var centerPlace = getCenterPlace(places);
-      if (centerPlace) {
-        $scope.displayWaitingTimePopup(centerPlace);
-      }
 
-        $scope.displayWaitingTimePopup(places[0]);
+      if (hasCheckCurrentPosition) {
+        var centerPlace = getCenterPlace(places);
+        if (centerPlace) {
+          $scope.displayWaitingTimePopup(centerPlace);
+        }
+      }
     });
   };
 
@@ -162,7 +163,7 @@ angular.module('starter.controllers')
 
     confirmPopup.then(function (res) {
       if (res) {
-        $scope.goToPlace(place.place_id); 
+        $scope.goToPlace(place.place_id);
       }
     });
   };
