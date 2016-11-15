@@ -104,7 +104,7 @@ angular.module('starter.controllers')
   $scope.goToOccurrence = function () {
     if ($rootScope.username) {
       var position = $scope.map.getCenter();
-      $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
+      $state.go('occurrence', { lng: position.lng(), lat: position.lat(), username: $rootScope.username });
     } else {
       $state.go('login');
     }
@@ -118,7 +118,7 @@ angular.module('starter.controllers')
   $scope.goToPlace = function (placeId) {
     if ($rootScope.username) {
       var position = $scope.map.getCenter();
-      $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId });
+      $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId, username: $rootScope.username });
     } else {
       $state.go('login');
     }
