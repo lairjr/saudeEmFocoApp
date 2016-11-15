@@ -7,7 +7,7 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       controller: 'MapsCtrl'
     })
     .state('occurrence', {
-      url: '/occurrence/:lat/:lng/:username',
+      url: '/occurrence/:lat/:lng',
       templateUrl: 'templates/occurence.html',
       controller: 'OccurrenceCtrl'
     })
@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       templateUrl: 'templates/symptoms_test.html'
     })
     .state('place', {
-      url: '/place/:lat/:lng/:placeId/:username',
+      url: '/place/:lat/:lng/:placeId',
       templateUrl: 'templates/place.html',
       controller: 'PlaceCtrl'
     })
