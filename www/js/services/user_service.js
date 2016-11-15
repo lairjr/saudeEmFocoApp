@@ -24,7 +24,7 @@ angular.module('starter.services').service('userService', function($resource, $q
     getByUsername: function (username) {
       var deferred = $q.defer();
 
-      userSvc.query({ username: username }).$promise.then(function (data) {
+      userSvc.get({ username: username }).$promise.then(function (data) {
         deferred.resolve(data);
       }, function (error) {
         deferred.reject(error);

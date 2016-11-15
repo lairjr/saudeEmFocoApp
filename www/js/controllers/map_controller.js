@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('MapsCtrl', function($scope, $ionicLoading, $ionicPopup, $state, occurrenceService, placesService) {
+.controller('MapsCtrl', function($scope, $ionicLoading, $ionicPopup, $state, $rootScope, occurrenceService, placesService) {
   $scope.centerMark = {}
   $scope.isCreating = false;
 
@@ -102,8 +102,12 @@ angular.module('starter.controllers')
   };
 
   $scope.goToOccurrence = function () {
-    var position = $scope.map.getCenter();
-    $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
+    if ($rootScope.username) {
+      var position = $scope.map.getCenter();
+      $state.go('occurrence', { lng: position.lng(), lat: position.lat() });
+    } else {
+      $state.go('login');
+    }
   };
 
   $scope.goToHealthcarePlaces = function () {
@@ -112,8 +116,12 @@ angular.module('starter.controllers')
   };
 
   $scope.goToPlace = function (placeId) {
-    var position = $scope.map.getCenter();
-    $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId });
+    if ($rootScope.username) {
+      var position = $scope.map.getCenter();
+      $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId });
+    } else {
+      $state.go('login');
+    }
   };
 
   $scope.displayCenter = function () {

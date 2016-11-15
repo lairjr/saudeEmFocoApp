@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('PlaceCtrl', function($scope, $state, $stateParams, $ionicPopup, placesService) {
+.controller('PlaceCtrl', function($scope, $state, $stateParams, $ionicPopup, $rootScope, placesService) {
   $scope.time = 130;
 
   $scope.init = function () {
@@ -28,7 +28,7 @@ angular.module('starter.controllers')
       place_id: $scope.place.place_id,
       waitingTime: time
     };
-    var promise = placesService.post(waitingTimeData);
+    var promise = placesService.post(waitingTimeData, $rootScope.username);
     promise.then(function () {
       var successAlert = $ionicPopup.alert({
         title: 'Obrigado',

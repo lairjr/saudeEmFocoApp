@@ -1,5 +1,5 @@
 describe('Occurrence Controller', function() {
-  var scope, mockOccurrenceService, mockPlacesService, ionicPopup, deferred;
+  var scope, mockOccurrenceService, mockPlacesService, ionicPopup, deferred, rootScope;
 
   beforeEach(module('starter.controllers'));
 
@@ -20,7 +20,10 @@ describe('Occurrence Controller', function() {
     state = {
       go: jasmine.createSpy('state.go')
     };
-    $controller('OccurrenceCtrl', { $scope: scope, $ionicPopup: ionicPopup, $stateParams: stateParams, $state: state, occurrenceService: mockOccurrenceService });
+    rootScope = {
+      username: 'someUser'
+    };
+    $controller('OccurrenceCtrl', { $scope: scope, $ionicPopup: ionicPopup, $stateParams: stateParams, $state: state, $rootScope: rootScope, occurrenceService: mockOccurrenceService });
   }));
 
   describe('save', function () {
@@ -33,7 +36,7 @@ describe('Occurrence Controller', function() {
     })
 
     it('calls occurrence service post', function () {
-      expect(mockOccurrenceService.post).toHaveBeenCalledWith(fakeOccurrence);
+      expect(mockOccurrenceService.post).toHaveBeenCalledWith(fakeOccurrence, 'someUser');
     });
 
     it('displays success alert if call return 200', function () {

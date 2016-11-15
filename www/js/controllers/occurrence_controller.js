@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('OccurrenceCtrl', function($scope, $ionicPopup, $stateParams, $state, occurrenceService) {
+.controller('OccurrenceCtrl', function($scope, $ionicPopup, $stateParams, $state, $rootScope, occurrenceService) {
   $scope.occurrence = {
     description: '',
     location: {
@@ -9,7 +9,7 @@ angular.module('starter.controllers')
   };
 
   $scope.save = function (occurrence) {
-    var promise = occurrenceService.post(occurrence);
+    var promise = occurrenceService.post(occurrence, $rootScope.username);
     promise.then(function () {
       var successAlert = $ionicPopup.alert({
         title: 'Obrigado',
