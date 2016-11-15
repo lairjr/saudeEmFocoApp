@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('OccurrenceCtrl', function($scope, $ionicPopup, $stateParams, $state, occurrenceService) {
+.controller('OccurrenceCtrl', function($scope, $ionicPopup, $stateParams, $state, $rootScope, occurrenceService) {
   $scope.occurrence = {
     description: '',
     location: {

@@ -29,6 +29,11 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       templateUrl: 'templates/users.html',
       controller: 'UsersCtrl'
     })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
     .state('healthcarePlaces', {
       url: '/healthcare-places/:lat/:lng',
       templateUrl: 'templates/healthcare_places.html',
