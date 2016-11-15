@@ -9,7 +9,7 @@ angular.module('starter.controllers')
   };
 
   $scope.save = function (occurrence) {
-    var promise = occurrenceService.post(occurrence);
+    var promise = occurrenceService.post(occurrence, $rootScope.username);
     promise.then(function () {
       var successAlert = $ionicPopup.alert({
         title: 'Obrigado',
