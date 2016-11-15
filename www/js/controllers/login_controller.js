@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, userService) {
+.controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, userService) {
   $scope.user = {};
 
   $scope.logIn = function (user) {
@@ -12,6 +12,7 @@ angular.module('starter.controllers')
         });
 
         successAlert.then(function () {
+          $state.go('map');
         });
       } else {
         var errorAlert = $ionicPopup.alert({
