@@ -28,8 +28,9 @@ describe('Map Controller', function() {
     };
     rootScope = {
       username: 'someUser'
-      $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $ionicPopup: ionicPopup, $state: state, $rootScope: rootScope, occurrenceService: mockOccurrenceService, placesService: mockPlacesService });
     };
+
+    $controller('MapsCtrl', { $scope: scope, $ionicLoading: ionicLoading, $ionicPopup: ionicPopup, $state: state, $rootScope: rootScope, occurrenceService: mockOccurrenceService, placesService: mockPlacesService });
     spyOn(scope, 'centerOnMe');
   }));
 
