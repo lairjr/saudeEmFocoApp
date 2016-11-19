@@ -1,11 +1,33 @@
 <ion-header-bar>
-  <h1 class="title">Ocorrencia</h1>
+  <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  <h1 class="title">Ocorrência</h1>
 </ion-header-bar>
 <ion-content>
-  <label class="item item-input">
-    <input type="text" placeholder="Descricao" ng-model="occurrence.description">
-  </label>
-  <button class="button button-block button-positive" ng-click="save(occurrence)">
-    Denunciar
-  </button>
+  <div class="img-coracao">
+    <img src="img/imgCoracao.png">
+  </div>
+  <div class="frase-descritiva">
+    O compartilhamento de informções de focos ou casos de doenças e muito importante para a população e proporciona que tenhamos mais cautela na regiões das ocorrências.
+  </div>
+  <ion-item class="item-icon-left "  style="color:#D56488;font-size:17px;font-weight:bold;background-color:#E6B1B9">
+    <i class="icon ion-compose"></i>Dados da ocorrência
+  </ion-item>
+  <div class="list list-inset">
+    <ion-list>
+      <div class="item item-divider">
+        Tipo de ocorrência
+      </div>
+      <ion-radio ng-model="choice" ng-value="'A'">Foco</ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'">Caso de contaminação</ion-radio>
+    </ion-list>
+    <div class="item item-divider">
+      Descrição
+    </div>
+    <label class="item item-input item-stacked-label">
+      <textarea placeholder="Descricao" ng-model="occurrence.description" rows="3"></textarea>
+    </label>
+  </div>
 </ion-content>
+<ion-footer-bar class="bar bar-footer bar-assertive" ng-click="save(occurrence)">
+  <h1 class="title">Denunciar</h1>
+</ion-footer-bar>
