@@ -17,7 +17,8 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     })
     .state('symptomsTest', {
       url: '/symptoms-test',
-      templateUrl: 'templates/symptoms_test.html'
+      templateUrl: 'templates/symptoms_test.html',
+      controller: 'SymptomsTestCtrl'
     })
     .state('place', {
       url: '/place/:lat/:lng/:placeId',
@@ -58,6 +59,21 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     .state('zika', {
       url: '/zika',
       templateUrl: 'templates/zika.html'
+    })
+    .state('has_few_symptoms', {
+      url: '/has_few_symptoms/:diseases',
+      templateUrl: 'templates/has_few_symptoms.html',
+      controller: 'SymptomsTestResultCtrl'
+    })
+    .state('has_some_symptoms', {
+      url: '/has_some_symptoms/:diseases',
+      templateUrl: 'templates/has_some_symptoms.html',
+      controller: 'SymptomsTestResultCtrl'
+    })
+    .state('has_symptoms', {
+      url: '/has_symptoms/:diseases',
+      templateUrl: 'templates/has_symptoms.html',
+      controller: 'SymptomsTestResultCtrl'
     });
 
   $urlRouterProvider.otherwise("/");
