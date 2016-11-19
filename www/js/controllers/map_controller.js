@@ -35,6 +35,14 @@ angular.module('starter.controllers')
       $scope.loading.hide();
       $scope.loadHealthcarePlaces(true);
     }, function (error) {
+      var errorAlert = $ionicPopup.alert({
+        title: 'Erro ao obter localizacao',
+        template: error.message
+      });
+
+      errorAlert.then(function () {
+        $scope.loading.hide();
+      });
       console.log('Unable to get location: ' + error.message);
     });
   };
