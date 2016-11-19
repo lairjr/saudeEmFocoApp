@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 .controller('PlaceCtrl', function($scope, $state, $stateParams, $ionicPopup, $rootScope, placesService) {
-  $scope.time = 130;
+  $scope.time = {};
 
   $scope.init = function () {
     $scope.loadPlace();
@@ -24,6 +24,7 @@ angular.module('starter.controllers')
   };
 
   $scope.saveWaitingTime = function (time) {
+    var totalSeconds = getTotalSeconds(time);
     var waitingTimeData = {
       place_id: $scope.place.place_id,
       waitingTime: time
@@ -62,5 +63,18 @@ angular.module('starter.controllers')
       }
     }
     return undefined;
+  };
+
+  function getTotalSeconds (time) {
+    var totalSeconds = 0;
+
+    if (time.hour) {
+      totalSeconds += time.hour * 3600;
+    }
+    if (time.minutes) {
+      totalSeconds += time.minutes * 60;
+    }
+
+    return totalSeconds;
   };
 });

@@ -9,7 +9,7 @@
     </div>
 
     <div class="item item-body">
-      <!-- <img class="full-image" src="{{ getImageUrl(place) }}"> -->
+      <img class="full-image" src="{{ getImageUrl(place) }}">
       <p>
         <button ng-if="!place.distanceMeasure" class="button button-small button-assertive">
           <i class="icon ion-close-round"></i>
@@ -32,13 +32,19 @@
       </p>
     </div>
   </div>
-  <ion-item>
-    <ion-label>Tempo de atendimento</ion-label>
-    <!-- <ion-datetime displayFormat="HH:mm" ng-model="waitingTime"></ion-datetime> -->
-    <input type="number" ng-model="time" />
-    <!-- {{ waitingTime }} -->
-  </ion-item>
-  <button class="button button-block button-positive" ng-click="saveWaitingTime(time)">
-    Informe seu tempo de atendimento
-  </button>
-</ion-content>
+  <div class="list list-inset">
+    <div class="item item-divider">
+      Tempo de atendimento
+    </div>
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="number" placeholder="HH" ng-model="time.hour">
+      </label>
+      <button class="item-input-wrapper">
+        <input type="number" placeholder="MM" ng-model="time.minutes">
+      </button>
+    </div>
+  </div>
+</ion-content><ion-footer-bar class="bar bar-footer bar-assertive" ng-click="saveWaitingTime(time)">
+  <h1 class="title">Informe seu tempo de atendimento</h1>
+</ion-footer-bar>
