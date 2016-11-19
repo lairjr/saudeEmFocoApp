@@ -4,148 +4,200 @@
 </ion-header-bar>
 
 <ion-content>
-  <div class="list">
-    <label class="item item-input item-select">
-      <div class="input-label">
-        Febre
-      </div>
-      <select>
-        <option>A cima de 38</option>
-        <option>Abaixo de 38</option>
-        <option>Sem febre</option>
-      </select>
-    </label>
+  <div class="img-coracao">
+    <img src="img/imgCoracao.png">
+  </div>
+  <div class="frase-descritiva">
+    Dengue, Zika e Chikungunya são as principais doenças transmitidas pelo Aedes Aegypti, sendo elas semelhantes em ralação aos sintomas presentes.
+  </div>
 
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Dor de cabeca
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </label>
+  <div ng-show="slideIndex == 0">
+    <div style="color:#308CCB; font-size:17px; font-weight:bold;">
+      Principais sintomas
+    </div>
 
-    <label class="item item-input item-select">
+    <label class="item item-input">
       <div class="input-label">
-        Manchas vermelhas
+         <i class="icon ion-ios-body" ng-if="perguntas[0].label=='Sem febre'"style="color:#3D496F;"></i>
+         <i class="icon ion-ios-body" ng-if="perguntas[0].label!='Sem febre'" style="color:red;"></i>
+         Febre
       </div>
-      <select>
-        <option>Sim, com forte coceira</option>
-        <option>Sim, com leve coceira</option>
-        <option>Sem manchas</option>
-      </select>
-    </label>
-
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Olhos vermelhos
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </label>
-
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Dor nos olhos
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </label>
-
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Olhos sensiveis a claridade
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </label>
-
-    <label class="item item-input item-select">
-      <div class="input-label">
-        Dor muscular
-      </div>
-      <select>
-        <option>Sim, forte dor</option>
-        <option>Sim, leve dor</option>
-        <option>Sem dor</option>
+      <select ng-model="perguntas[0].label" >
+         <option>Sem febre</option>
+         <option selected>Abaixo de 39 graus</option>
+         <option>Acima de 39 graus</option>
       </select>
     </label>
 
     <label class="item item-input item-select">
       <div class="input-label">
-        Dor articular
+         <i class="icon ion-ios-body" ng-if="perguntas[1].label=='Sem dor'"style="color:#3D496F;"></i>
+         <i class="icon ion-ios-body" ng-if="perguntas[1].label!='Sem dor'" style="color:red;"></i>
+         Dor articular
       </div>
-      <select>
-        <option>Sim, forte dor</option>
-        <option>Sim, leve dor</option>
-        <option>Sem dor</option>
+      <select ng-model="perguntas[1].label">
+       <option>Sem dor</option>
+       <option selected>Dor articular moderada</option>
+       <option>Dor articular intensa</option>
       </select>
-    </label>
-
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Casaco
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </label>
-
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Sangramento
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </label>
-
-    <label class="item item-input item-toggle">
-      <div class="input-label">
-        Vomito
-      </div>
-      <label class="toggle toggle-assertive">
-      <input type="checkbox">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
     </label>
 
     <label class="item item-input item-select">
-      <div class="input-label">
-        Articulacoes inchadas
-      </div>
-      <select>
-        <option>Sim, muito inchaco</option>
-        <option>Sim, pouco inchaco</option>
-        <option>Sem inchaco</option>
-      </select>
+     <div class="input-label">
+       <i class="icon ion-ios-body" ng-if="perguntas[2].label=='Sem inchaço'"style="color:#3D496F;"></i>
+       <i class="icon ion-ios-body" ng-if="perguntas[2].label!='Sem inchaço'" style="color:red;"></i>
+       Inchaço articular
+     </div>
+     <select ng-model="perguntas[2].label">
+       <option>Sem inchaço</option>
+       <option selected>Inchaço moderado</option>
+       <option>Inchaço severo</option>
+     </select>
     </label>
+
+    <label class="item item-input item-select">
+     <div class="input-label">
+       <i class="icon ion-ios-body" ng-if="perguntas[3].label=='Sem dor'"style="color:#3D496F;"></i>
+       <i class="icon ion-ios-body" ng-if="perguntas[3].label!='Sem dor'" style="color:red;"></i>
+       Dor muscular
+     </div>
+     <select ng-model="perguntas[3].label">
+       <option>Sem dor</option>
+       <option selected>Dor muscular moderada</option>
+       <option>Dor muscular intensa</option>
+     </select>
+    </label>
+
+    <div align="right">
+      <button class="button button-clear button-balanced button-right no-animation icon-right ion-chevron-right slide-next"style="font-size:15px;font-weight:bold;" ng-click="changeView(1)">
+        Selecionar outros sintomas
+      </button>
+    </div>
+
+    <div class="btn-testeSintomas">
+      <button ng-click="teste(perguntas)" id="testeDeSintomas-button5" class="button button-block button-assertive">Verificar possibilidade de infecção</button>
+    </div>
+
+    <button ng-click="limparCampos(perguntas)" id="testeDeSintomas-button5" class="button button-block button-royal"style="width:50%;margin-left:25%;">Limpar campos</button>
+  </div>
+
+  <div ng-show="slideIndex == 1">
+    <div align="left" style="padding-left:10px;">
+      <button class="button button-clear button-balanced button-left no-animation slide-back icon-left ion-chevron-left" style="font-size:15px;font-weight:bold;"
+      ng-click="changeView(0)" ng-show="slideIndex == 1">
+      Voltar
+      </button>
+    </div>
+
+    <item class="item item-toggle ">
+      <i class="icon ion-ios-body" ng-if="!perguntas[4].label"style="color:black;"></i>
+      <i class="icon ion-ios-body" ng-if="perguntas[4].label"style="color:red;"></i>
+       Dor de cabeça
+        <label class="toggle  toggle-positive" >
+         <input ng-model="perguntas[4].label"type="checkbox">
+         <div class="track">
+          <div class="handle"></div>
+         </div>
+        </label>
+    </item>
+
+    <item class="item item-toggle ">
+        <i class="icon ion-ios-body" ng-if="!perguntas[5].label"style="color:black;"></i>
+        <i class="icon ion-ios-body" ng-if="perguntas[5].label"style="color:red;"></i>
+         Manchas vermelhas no corpo
+        <label class="toggle  toggle-positive" >
+        <input ng-model="perguntas[5].label"type="checkbox">
+        <div class="track">
+          <div class="handle"></div>
+        </div>
+       </label>
+    </item>
+
+   <item class="item item-toggle ">
+      <i class="icon ion-ios-body" ng-if="!perguntas[6].label"style="color:black;"></i>
+      <i class="icon ion-ios-body" ng-if="perguntas[6].label"style="color:red;"></i>
+         Cansaço
+         <label class="toggle  toggle-positive" >
+             <input ng-model="perguntas[6].label"type="checkbox">
+             <div class="track">
+                 <div class="handle"></div>
+             </div>
+         </label>
+    </item>
+
+   <item class="item item-toggle ">
+     <i class="icon ion-ios-body" ng-if="!perguntas[7].label"style="color:black;"></i>
+     <i class="icon ion-ios-body" ng-if="perguntas[7].label"style="color:red;"></i>
+       Dor atrás dos olhos
+       <label class="toggle  toggle-positive" >
+           <input ng-model="perguntas[7].label"type="checkbox">
+           <div class="track">
+               <div class="handle"></div>
+           </div>
+       </label>
+   </item>
+
+   <item class="item item-toggle ">
+    <i class="icon ion-ios-body" ng-if="!perguntas[8].label"style="color:black;"></i>
+    <i class="icon ion-ios-body" ng-if="perguntas[8].label"style="color:red;"></i>
+       Glânglios linfáticos aumentados
+       <label class="toggle  toggle-positive" >
+           <input ng-model="perguntas[8].label"type="checkbox">
+           <div class="track">
+               <div class="handle"></div>
+           </div>
+       </label>
+   </item>
+
+   <item class="item item-toggle ">
+    <i class="icon ion-ios-body" ng-if="!perguntas[9].label"style="color:black;"></i>
+    <i class="icon ion-ios-body" ng-if="perguntas[9].label"style="color:red;"></i>
+       Conjuntivite
+       <label class="toggle  toggle-positive" >
+           <input ng-model="perguntas[9].label"type="checkbox">
+           <div class="track">
+               <div class="handle"></div>
+           </div>
+       </label>
+   </item>
+
+   <item class="item item-toggle ">
+    <i class="icon ion-ios-body" ng-if="!perguntas[10].label"style="color:black;"></i>
+    <i class="icon ion-ios-body" ng-if="perguntas[10].label"style="color:red;"></i>
+       Fotofobia
+       <label class="toggle  toggle-positive" >
+           <input ng-model="perguntas[10].label"type="checkbox">
+           <div class="track">
+               <div class="handle"></div>
+           </div>
+       </label>
+   </item>
+
+   <item class="item item-toggle ">
+    <i class="icon ion-ios-body" ng-if="!perguntas[11].label"style="color:black;"></i>
+    <i class="icon ion-ios-body" ng-if="perguntas[11].label"style="color:red;"></i>
+       Sangramento
+       <label class="toggle  toggle-positive" >
+           <input ng-model="perguntas[11].label"type="checkbox">
+           <div class="track">
+               <div class="handle"></div>
+           </div>
+       </label>
+   </item>
+
+  <item class="item item-toggle ">
+    <i class="icon ion-ios-body" ng-if="!perguntas[12].label"style="color:black;"></i>
+    <i class="icon ion-ios-body" ng-if="perguntas[12].label"style="color:red;"></i>
+       Nausea
+       <label class="toggle  toggle-positive" >
+           <input ng-model="perguntas[12].label"type="checkbox">
+           <div class="track">
+               <div class="handle"></div>
+           </div>
+       </label>
+   </item>
   </div>
 </ion-content>
-
-<ion-footer-bar class="bar bar-footer bar-positive">
+<!-- <ion-footer-bar class="bar bar-footer bar-positive">
   <h1 class="title">Testar</h1>
-</ion-footer-bar>
+</ion-footer-bar> -->

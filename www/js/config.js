@@ -17,7 +17,8 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     })
     .state('symptomsTest', {
       url: '/symptoms-test',
-      templateUrl: 'templates/symptoms_test.html'
+      templateUrl: 'templates/symptoms_test.html',
+      controller: 'SymptomsTestCtrl'
     })
     .state('place', {
       url: '/place/:lat/:lng/:placeId',
