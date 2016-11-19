@@ -46,7 +46,19 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     .state('diseases', {
       url: '/diseases',
       templateUrl: 'templates/diseases.html'
+    })
+    .state('chikungunya', {
+      url: '/chikungunya',
+      templateUrl: 'templates/chikungunya.html'
+    })
+    .state('dengue', {
+      url: '/dengue',
+      templateUrl: 'templates/dengue.html'
+    })
+    .state('zika', {
+      url: '/zika',
+      templateUrl: 'templates/zika.html'
     });
-    
+
   $urlRouterProvider.otherwise("/");
 })
