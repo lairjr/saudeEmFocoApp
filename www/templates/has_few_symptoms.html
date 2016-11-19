@@ -1,0 +1,18 @@
+<ion-header-bar class="bar bar-header">
+  <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  <h1 class="title">Teste de Sintomas</h1>
+</ion-header-bar>
+<ion-content >
+    <div class="item item-body icon-left ion-clipboard" style="background-color:#539F5E;border-color:#539F5E; font-size:40px;color:#FFFFFF;text-align: center;font-weight:bold;">
+    </div>
+    <div class="item item-body testeSintomasResultado"style="background-color:#539F5E;border-color:#539F5E;">
+       Você possui poucos sintomas característicos das doenças transmitidas pelo Aedes, sendo pouco provável a existência de alguma infecção.
+      <div class="spacer" style="width: 200px; height: 50px;"></div>
+    </div>
+    <div class="aviso">
+     Importante: este teste é apenas um indicativo e nunca deve substituir uma consulta com seu médico!
+    </div>
+    <button class="button button-dark button-block icon-left ion-medkit" style="color:white;width:90%;margin-left:5%;" ng-click="goMap()">Encontrar hospital</button>
+    <div class="spacer" style="width: 100%; height: 30px;"></div>
+    <a class="button button-assertive voltar"ng-click="goBack()">Voltar</a>
+</ion-content>
