@@ -42,7 +42,11 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
     .state('about', {
       url: '/about',
       templateUrl: 'templates/about.html'
+    })
+    .state('diseases', {
+      url: '/diseases',
+      templateUrl: 'templates/diseases.html'
     });
-
+    
   $urlRouterProvider.otherwise("/");
 })
