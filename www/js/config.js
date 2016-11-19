@@ -38,6 +38,10 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       url: '/healthcare-places/:lat/:lng',
       templateUrl: 'templates/healthcare_places.html',
       controller: 'HealthcarePlacesCtrl'
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'templates/about.html'
     });
 
   $urlRouterProvider.otherwise("/");
