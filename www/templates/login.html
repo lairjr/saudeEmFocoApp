@@ -1,14 +1,21 @@
 <ion-header-bar>
-  <h1 class="title">Autenticas</h1>
+  <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  <h1 class="title">Autenticar</h1>
 </ion-header-bar>
-<ion-content>
-  <label class="item item-input">
-    <input type="text" placeholder="Usuario" ng-model="user.username">
-  </label>
-  <label class="item item-input">
-    <input type="password" placeholder="Senha" ng-model="user.password">
-  </label>
-  <button class="button button-block button-positive" ng-click="logIn(user)">
-    Logar
-  </button>
+<ion-content padding="true" class="has-header" style="background-color:#30425C;">
+  <form id="login-form1" class="list">
+      <ion-list id="login-list1">
+          <label class="item item-input" id="login-input1">
+              <span class="input-label">Usuário</span>
+                <input type="text" placeholder="Usuario" ng-model="user.username">
+          </label>
+          <label class="item item-input" id="login-input2">
+              <span class="input-label">Senha</span>
+              <input type="password" placeholder="Senha" ng-model="user.password">
+          </label>
+      </ion-list>
+      <button class="button button-block button-positive" ng-click="logIn(user)">
+        Acessar
+      </button>
+  </form>
 </ion-content>
