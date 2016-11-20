@@ -1,21 +1,30 @@
 <ion-header-bar>
   <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-  <h1 class="title">Autenticar</h1>
+  <h1 class="title">Acessar</h1>
 </ion-header-bar>
-<ion-content padding="true" class="has-header" style="background-color:#30425C;">
-  <form id="login-form1" class="list">
-      <ion-list id="login-list1">
-          <label class="item item-input" id="login-input1">
-              <span class="input-label">Usuário</span>
-                <input type="text" placeholder="Usuario" ng-model="user.username">
-          </label>
-          <label class="item item-input" id="login-input2">
-              <span class="input-label">Senha</span>
-              <input type="password" placeholder="Senha" ng-model="user.password">
-          </label>
-      </ion-list>
-      <button class="button button-block button-positive" ng-click="logIn(user)">
-        Acessar
-      </button>
-  </form>
+<ion-content padding="true" style="background-color:#30425C;">
+  <div class="logo-menu">
+    <img src="img/logo2.png" width="60%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+  </div>
+  <div class="list list-inset" style="background-color:#30425C;">
+    <!-- <div class="item item-divider">
+      Usuário
+    </div> -->
+    <label class="item item-input">
+      <input type="text" placeholder="Usuário" ng-model="user.username" style="text-align: center;">
+    </label>
+    <label class="item item-input">
+      <input type="password" placeholder="Senha" ng-model="user.password" style="text-align: center;">
+    </label>
+      <!-- <label class="item item-input">
+      </label> -->
+    <!-- <div class="item item-divider">
+      Senha
+    </div> -->
+      <!-- <label class="item item-input">
+      </label> -->
+    <button class="button button-block button-positive" ng-click="logIn(user)">
+      Acessar
+    </button>
+  </div>
 </ion-content>
