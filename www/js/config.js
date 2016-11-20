@@ -74,6 +74,11 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       url: '/has_symptoms/:diseases',
       templateUrl: 'templates/has_symptoms.html',
       controller: 'SymptomsTestResultCtrl'
+    })
+    .state('statistics', {
+      url: '/statistics',
+      templateUrl: 'templates/statistics.html',
+      controller: 'StatisticsCtrl'
     });
 
   $urlRouterProvider.otherwise("/");
