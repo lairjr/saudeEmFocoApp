@@ -27,7 +27,7 @@ angular.module('starter.controllers')
     var totalSeconds = getTotalSeconds(time);
     var waitingTimeData = {
       place_id: $scope.place.place_id,
-      waitingTime: time
+      waitingTime: totalSeconds
     };
     var promise = placesService.post(waitingTimeData, $rootScope.username);
     promise.then(function () {
