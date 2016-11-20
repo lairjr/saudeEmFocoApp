@@ -1,13 +1,20 @@
 <ion-header-bar class="bar bar-header">
   <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-  <h1 class="title">Ranking de usuarios</h1>
+  <h1 class="title">Ranking de usuários</h1>
 </ion-header-bar>
 
-<ion-content ng-init="init()">
-  <div class="list" ng-repeat="user in userList | orderBy:'reportNumber'">
-    <li class="item">
-      <h2>Username: {{ user.name }}</h2>
-      <p>Pontos: {{ user.reportNumber }}</p>
+<ion-content ng-init="init()" style="background-color:#30425C;">
+  <div class="img-coracao">
+    <img src="img/imgCoracao.png">
+  </div>
+  <div class="frase-descritiva">
+    Esses são os usuários que mais contribuiram com o compartilhamento de informações nesse aplicativo. Eles estão ordenados por número de pontos onde 10 pontos são recebidos pela divulgação de um tempo de atendimento e 5 por ocorrências.
+  </div>
+  <div class="list padding">
+    <li class="item item-ranking" ng-repeat="user in userList">
+      <span class="number">{{ user.position }}</span>
+      <h2 class="name">{{ user.name }}</h2>
+      <span class="score">{{ user.reportNumber }}</span>
     </li>
   </div>
 </ion-content>
