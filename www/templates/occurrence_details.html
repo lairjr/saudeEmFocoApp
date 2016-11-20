@@ -1,0 +1,31 @@
+<ion-header-bar>
+  <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  <h1 class="title">Detalhes de Orrência</h1>
+</ion-header-bar>
+<ion-content style="background-color:#30425C;">
+  <div class="img-coracao">
+    <img src="img/imgCoracao.png">
+  </div>
+  <div class="frase-descritiva">
+    Ocorrência de focos ou de casos são reportados diariamente. Por favor, verifique as coidições no local dessa ocorrência e nos informe se o problema já foi resolvido.
+  </div>
+  <div class="list list-inset">
+    <div class="item item-divider">
+      Tipo de ocorrência
+    </div>
+    <label class="item">
+      <p>Foco</p>
+    </label>
+    <div class="item item-divider">
+      Descrição
+    </div>
+    <label class="item">
+      <p style="white-space: normal;">Foco de mosquitos aedes aegypti localizado nos pneus ao redor do bicicleteiro.</p>
+    </label>
+  </div>
+  <div class="padding">
+    <button class="button button-block button-assertive" ng-click="save(occurrence)">
+      Marcar como resolvido
+    </button>
+  </div>
+</ion-content>

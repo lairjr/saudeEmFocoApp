@@ -79,7 +79,13 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       url: '/statistics',
       templateUrl: 'templates/statistics.html',
       controller: 'StatisticsCtrl'
+    })
+    .state('occurrence-details', {
+      url: '/occurrence-details/:id',
+      templateUrl: 'templates/occurrence_details.html',
+      controller: 'OccurrenceDetailsCtrl'
     });
+
 
   $urlRouterProvider.otherwise("/");
 })

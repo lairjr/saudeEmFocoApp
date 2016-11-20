@@ -72,7 +72,7 @@ angular.module('starter.controllers')
       icon: 'img/placeMark.png'
     });
 
-    var content = "<h4>" + place.name + "</h4>";
+    var content = "<h4>" + place.name + "</h4><a href='#/place'>Detalhes</a>";
     var infoWindow = new google.maps.InfoWindow({
       content: content
     });
@@ -99,7 +99,8 @@ angular.module('starter.controllers')
       icon: 'img/occurrenceMark.png'
     });
 
-    var content = "<h4>" + occurrence.description + "</h4>";
+    var occurrenceUrl = '#/occurrence-details/' + occurrence._id;
+    var content = "<h4>" + occurrence.description + "</h4><a href='" + occurrenceUrl + "'>Detalhes</a>";
     var infoWindow = new google.maps.InfoWindow({
       content: content
     });
