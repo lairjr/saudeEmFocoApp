@@ -16,57 +16,46 @@
       Principais sintomas
     </div>
 
-    <label class="item item-input">
-      <div class="input-label">
-         <i class="icon ion-ios-body" ng-if="perguntas[0].label=='Sem febre'"style="color:#3D496F;"></i>
-         <i class="icon ion-ios-body" ng-if="perguntas[0].label!='Sem febre'" style="color:red;"></i>
-         Febre
-      </div>
-      <select ng-model="perguntas[0].label" >
-         <option>Sem febre</option>
-         <option selected>Abaixo de 39 graus</option>
-         <option>Acima de 39 graus</option>
-      </select>
-    </label>
+    <div style="padding-top: 10px;">
+      <ion-list>
+        <div class="item item-divider">
+          <i class="icon ion-alert-circled" ng-if="perguntas[0].label=='Sem febre'"style="color:#3D496F;"></i>
+          <i class="icon ion-alert-circled" ng-if="perguntas[0].label!='Sem febre'" style="color:red;"></i>
+          Febre
+        </div>
+        <ion-radio name="febre" ng-model="perguntas[0].label" ng-value="'Sem febre'">Sem febre</ion-radio>
+        <ion-radio name="febre" ng-model="perguntas[0].label" ng-value="'Abaixo de 39 graus'">Abaixo de 39 graus</ion-radio>
+        <ion-radio name="febre" ng-model="perguntas[0].label" ng-value="'Acima de 39 graus'">A cima de 39 graus</ion-radio>
 
-    <label class="item item-input item-select">
-      <div class="input-label">
-         <i class="icon ion-ios-body" ng-if="perguntas[1].label=='Sem dor'"style="color:#3D496F;"></i>
-         <i class="icon ion-ios-body" ng-if="perguntas[1].label!='Sem dor'" style="color:red;"></i>
-         Dor articular
-      </div>
-      <select ng-model="perguntas[1].label">
-       <option>Sem dor</option>
-       <option selected>Dor articular moderada</option>
-       <option>Dor articular intensa</option>
-      </select>
-    </label>
+        <div class="item item-divider">
+          <i class="icon ion-alert-circled" ng-if="perguntas[1].label=='Sem dor'"style="color:#3D496F;"></i>
+          <i class="icon ion-alert-circled" ng-if="perguntas[1].label!='Sem dor'" style="color:red;"></i>
+          Dor articular
+        </div>
+        <ion-radio name="dor" ng-model="perguntas[1].label" ng-value="'Sem dor'">Sem dor</ion-radio>
+        <ion-radio name="dor" ng-model="perguntas[1].label" ng-value="'Dor articular moderada'">Dor articular moderada</ion-radio>
+        <ion-radio name="dor" ng-model="perguntas[1].label" ng-value="'Dor articular intensa'">Dor articular intensa</ion-radio>
 
-    <label class="item item-input item-select">
-     <div class="input-label">
-       <i class="icon ion-ios-body" ng-if="perguntas[2].label=='Sem inchaço'"style="color:#3D496F;"></i>
-       <i class="icon ion-ios-body" ng-if="perguntas[2].label!='Sem inchaço'" style="color:red;"></i>
-       Inchaço articular
-     </div>
-     <select ng-model="perguntas[2].label">
-       <option>Sem inchaço</option>
-       <option selected>Inchaço moderado</option>
-       <option>Inchaço severo</option>
-     </select>
-    </label>
+        <div class="item item-divider">
+          <i class="icon ion-alert-circled" ng-if="perguntas[2].label=='Sem inchaço'"style="color:#3D496F;"></i>
+          <i class="icon ion-alert-circled" ng-if="perguntas[2].label!='Sem inchaço'" style="color:red;"></i>
+          Inchaço articular
+        </div>
+        <ion-radio name="inchaco" ng-model="perguntas[2].label" ng-value="'Sem inchaço'">Sem inchaço</ion-radio>
+        <ion-radio name="inchaco" ng-model="perguntas[2].label" ng-value="'Inchaço moderado'">Inchaço moderado</ion-radio>
+        <ion-radio name="inchaco" ng-model="perguntas[2].label" ng-value="'Inchaço severo'">Inchaço severo</ion-radio>
 
-    <label class="item item-input item-select">
-     <div class="input-label">
-       <i class="icon ion-ios-body" ng-if="perguntas[3].label=='Sem dor'"style="color:#3D496F;"></i>
-       <i class="icon ion-ios-body" ng-if="perguntas[3].label!='Sem dor'" style="color:red;"></i>
-       Dor muscular
-     </div>
-     <select ng-model="perguntas[3].label">
-       <option>Sem dor</option>
-       <option selected>Dor muscular moderada</option>
-       <option>Dor muscular intensa</option>
-     </select>
-    </label>
+        <div class="item item-divider">
+          <i class="icon ion-alert-circled" ng-if="perguntas[3].label=='Sem dor'"style="color:#3D496F;"></i>
+          <i class="icon ion-alert-circled" ng-if="perguntas[3].label!='Sem dor'" style="color:red;"></i>
+          Dor muscular
+        </div>
+        <ion-radio name="dor-moscular" ng-model="perguntas[3].label" ng-value="'Sem dor'">Sem dor</ion-radio>
+        <ion-radio name="dor-moscular" ng-model="perguntas[3].label" ng-value="'Dor muscular moderada'">Dor muscular moderada</ion-radio>
+        <ion-radio name="dor-moscular" ng-model="perguntas[3].label" ng-value="'Dor muscular intensa'">Dor muscular intensa</ion-radio>
+      </ion-list>
+
+    </div>
 
     <div align="right">
       <button class="button button-clear button-balanced button-right no-animation icon-right ion-chevron-right slide-next"style="font-size:15px;font-weight:bold;" ng-click="changeView(1)">
@@ -88,8 +77,8 @@
     </div>
 
     <item class="item item-toggle ">
-      <i class="icon ion-ios-body" ng-if="!perguntas[4].label"style="color:black;"></i>
-      <i class="icon ion-ios-body" ng-if="perguntas[4].label"style="color:red;"></i>
+      <i class="icon ion-alert-circled" ng-if="!perguntas[4].label"style="color:black;"></i>
+      <i class="icon ion-alert-circled" ng-if="perguntas[4].label"style="color:red;"></i>
        Dor de cabeça
         <label class="toggle  toggle-positive" >
          <input ng-model="perguntas[4].label"type="checkbox">
@@ -100,8 +89,8 @@
     </item>
 
     <item class="item item-toggle ">
-        <i class="icon ion-ios-body" ng-if="!perguntas[5].label"style="color:black;"></i>
-        <i class="icon ion-ios-body" ng-if="perguntas[5].label"style="color:red;"></i>
+        <i class="icon ion-alert-circled" ng-if="!perguntas[5].label"style="color:black;"></i>
+        <i class="icon ion-alert-circled" ng-if="perguntas[5].label"style="color:red;"></i>
          Manchas vermelhas no corpo
         <label class="toggle  toggle-positive" >
         <input ng-model="perguntas[5].label"type="checkbox">
@@ -112,8 +101,8 @@
     </item>
 
    <item class="item item-toggle ">
-      <i class="icon ion-ios-body" ng-if="!perguntas[6].label"style="color:black;"></i>
-      <i class="icon ion-ios-body" ng-if="perguntas[6].label"style="color:red;"></i>
+      <i class="icon ion-alert-circled" ng-if="!perguntas[6].label"style="color:black;"></i>
+      <i class="icon ion-alert-circled" ng-if="perguntas[6].label"style="color:red;"></i>
          Cansaço
          <label class="toggle  toggle-positive" >
              <input ng-model="perguntas[6].label"type="checkbox">
@@ -124,8 +113,8 @@
     </item>
 
    <item class="item item-toggle ">
-     <i class="icon ion-ios-body" ng-if="!perguntas[7].label"style="color:black;"></i>
-     <i class="icon ion-ios-body" ng-if="perguntas[7].label"style="color:red;"></i>
+     <i class="icon ion-alert-circled" ng-if="!perguntas[7].label"style="color:black;"></i>
+     <i class="icon ion-alert-circled" ng-if="perguntas[7].label"style="color:red;"></i>
        Dor atrás dos olhos
        <label class="toggle  toggle-positive" >
            <input ng-model="perguntas[7].label"type="checkbox">
@@ -136,8 +125,8 @@
    </item>
 
    <item class="item item-toggle ">
-    <i class="icon ion-ios-body" ng-if="!perguntas[8].label"style="color:black;"></i>
-    <i class="icon ion-ios-body" ng-if="perguntas[8].label"style="color:red;"></i>
+    <i class="icon ion-alert-circled" ng-if="!perguntas[8].label"style="color:black;"></i>
+    <i class="icon ion-alert-circled" ng-if="perguntas[8].label"style="color:red;"></i>
        Glânglios linfáticos aumentados
        <label class="toggle  toggle-positive" >
            <input ng-model="perguntas[8].label"type="checkbox">
@@ -148,8 +137,8 @@
    </item>
 
    <item class="item item-toggle ">
-    <i class="icon ion-ios-body" ng-if="!perguntas[9].label"style="color:black;"></i>
-    <i class="icon ion-ios-body" ng-if="perguntas[9].label"style="color:red;"></i>
+    <i class="icon ion-alert-circled" ng-if="!perguntas[9].label"style="color:black;"></i>
+    <i class="icon ion-alert-circled" ng-if="perguntas[9].label"style="color:red;"></i>
        Conjuntivite
        <label class="toggle  toggle-positive" >
            <input ng-model="perguntas[9].label"type="checkbox">
@@ -160,8 +149,8 @@
    </item>
 
    <item class="item item-toggle ">
-    <i class="icon ion-ios-body" ng-if="!perguntas[10].label"style="color:black;"></i>
-    <i class="icon ion-ios-body" ng-if="perguntas[10].label"style="color:red;"></i>
+    <i class="icon ion-alert-circled" ng-if="!perguntas[10].label"style="color:black;"></i>
+    <i class="icon ion-alert-circled" ng-if="perguntas[10].label"style="color:red;"></i>
        Fotofobia
        <label class="toggle  toggle-positive" >
            <input ng-model="perguntas[10].label"type="checkbox">
@@ -172,8 +161,8 @@
    </item>
 
    <item class="item item-toggle ">
-    <i class="icon ion-ios-body" ng-if="!perguntas[11].label"style="color:black;"></i>
-    <i class="icon ion-ios-body" ng-if="perguntas[11].label"style="color:red;"></i>
+    <i class="icon ion-alert-circled" ng-if="!perguntas[11].label"style="color:black;"></i>
+    <i class="icon ion-alert-circled" ng-if="perguntas[11].label"style="color:red;"></i>
        Sangramento
        <label class="toggle  toggle-positive" >
            <input ng-model="perguntas[11].label"type="checkbox">
@@ -184,8 +173,8 @@
    </item>
 
   <item class="item item-toggle ">
-    <i class="icon ion-ios-body" ng-if="!perguntas[12].label"style="color:black;"></i>
-    <i class="icon ion-ios-body" ng-if="perguntas[12].label"style="color:red;"></i>
+    <i class="icon ion-alert-circled" ng-if="!perguntas[12].label"style="color:black;"></i>
+    <i class="icon ion-alert-circled" ng-if="perguntas[12].label"style="color:red;"></i>
        Nausea
        <label class="toggle  toggle-positive" >
            <input ng-model="perguntas[12].label"type="checkbox">
