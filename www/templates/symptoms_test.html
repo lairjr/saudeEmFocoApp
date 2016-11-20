@@ -3,7 +3,7 @@
   <h1 class="title">Teste de Sintomas</h1>
 </ion-header-bar>
 
-<ion-content>
+<ion-content style="background-color:#30425C;">
   <div class="img-coracao">
     <img src="img/imgCoracao.png">
   </div>
@@ -12,7 +12,7 @@
   </div>
 
   <div ng-show="slideIndex == 0" class="padding">
-    <div style="color:#308CCB; font-size:17px; font-weight:bold;">
+    <div style="color:white; font-size:17px; font-weight:bold;">
       Principais sintomas
     </div>
 
@@ -73,12 +73,10 @@
         Selecionar outros sintomas
       </button>
     </div>
-
-    <div class="btn-testeSintomas">
-      <button ng-click="teste(perguntas)" id="testeDeSintomas-button5" class="button button-block button-assertive">Verificar possibilidade de infecção</button>
+    <div style="padding-top: 20px;">
+      <button ng-click="limparCampos(perguntas)" class="button button-block button-royal">Limpar campos</button>
+      <button ng-click="teste(perguntas)" class="button button-block button-assertive">Verificar possibilidade de infecção</button>
     </div>
-
-    <button ng-click="limparCampos(perguntas)" id="testeDeSintomas-button5" class="button button-block button-royal"style="width:50%;margin-left:25%;">Limpar campos</button>
   </div>
 
   <div ng-show="slideIndex == 1" class="padding">
