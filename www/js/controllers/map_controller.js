@@ -162,23 +162,23 @@ angular.module('starter.controllers')
       title: 'Está em atendimento?',
       buttons: [
         {
-          text: 'Nao',
-          onTap: function (e) {
-            return false;
+          text: 'Não',
+          onTap: function () {
+            return { answer: false };
           }
         },
         {
           text: 'Sim',
           type: 'button-positive',
           onTap: function () {
-            return true;
+            return { answer: true };
           }
         }
       ]
     });
 
     confirmPopup.then(function (res) {
-      if (res) {
+      if (res.answer) {
         $scope.goToPlace(place.place_id);
       }
     });
