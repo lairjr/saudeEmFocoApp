@@ -5,6 +5,7 @@ angular.module('starter.services').service('occurrenceService', function($resour
     return {
       description: occurrenceVM.description,
       status: 'ACTIVE',
+      type:  occurrenceVM.type,
       location: {
         type: 'Point',
         coordinates: [occurrenceVM.location.lat, occurrenceVM.location.lng]
