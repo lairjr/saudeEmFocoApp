@@ -2,7 +2,7 @@
   <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   <h1 class="title">Detalhes de Orrência</h1>
 </ion-header-bar>
-<ion-content style="background-color:#30425C;">
+<ion-content style="background-color:#30425C;" ng-init="init()">
   <div class="img-coracao">
     <img src="img/imgCoracao.png">
   </div>
@@ -14,17 +14,18 @@
       Tipo de ocorrência
     </div>
     <label class="item">
-      <p>Foco</p>
+      <p ng-if="occurrence.type == 'focus'">Foco</p>
+      <p ng-if="occurrence.type == 'contamination'">Contaminação</p>
     </label>
     <div class="item item-divider">
       Descrição
     </div>
     <label class="item">
-      <p style="white-space: normal;">Foco de mosquitos aedes aegypti localizado nos pneus ao redor do bicicleteiro.</p>
+      <p style="white-space: normal;">{{ occurrence.description }}</p>
     </label>
   </div>
   <div class="padding">
-    <button class="button button-block button-assertive" ng-click="save(occurrence)">
+    <button class="button button-block button-assertive" ng-click="save()">
       Marcar como resolvido
     </button>
   </div>

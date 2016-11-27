@@ -1,5 +1,5 @@
 angular.module('starter.services').service('occurrenceService', function($resource, $q) {
-  var occurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences/:username');
+  var occurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences/:id');
 
   function parseOccurrence(occurrenceVM) {
     return {
@@ -25,12 +25,37 @@ angular.module('starter.services').service('occurrenceService', function($resour
 
       return deferred.promise;
     },
+    getById: function (occurrenceId) {
+      var deferred = $q.defer();
+
+      occurrenceSvc.get({ id: occurrenceId }).$promise.then(function (data) {
+        deferred.resolve(data);
+      }, function (error) {
+        deferred.reject(error);
+      });
+
+      return deferred.promise;
+    },
+    postReview: function (occurrenceId) {
+      var deferred = $q.defer();
+
+      var saveOccurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences/:id/review');
+
+      saveOccurrenceSvc.save({ id: occurrenceId }, null).$promise.then(function (data) {
+        deferred.resolve(data);
+      }, function (error) {
+        deferred.reject(error);
+      });
+
+      return deferred.promise;
+    },
     post: function(occurrence, username) {
       var deferred = $q.defer();
 
       var occurrenceData = parseOccurrence(occurrence);
+      var saveOccurrenceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences/:username');
 
-      occurrenceSvc.save({ username: username }, occurrenceData).$promise.then(function (data) {
+      saveOccurrenceSvc.save({ username: username }, occurrenceData).$promise.then(function (data) {
         deferred.resolve(data);
       }, function (error) {
         deferred.reject(error);
