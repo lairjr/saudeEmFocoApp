@@ -73,7 +73,7 @@ angular.module('starter.controllers')
       icon: 'img/placeMark.png'
     });
     var placeUrl = '#/place/' + place.geometry.location.lat + '/' + place.geometry.location.lng + '/' + place.place_id + '/false';
-    var content = "<h4>" + place.name + "</h4><a class='button button-positive' href='" + placeUrl + "'>Detalhes</a>";
+    var content = "<h4>" + place.name + "</h4><p> " + place.vicinity + "</p><a class='button button-positive' href='" + placeUrl + "'>Detalhes</a>";
     var infoWindow = new google.maps.InfoWindow({
       content: content
     });
