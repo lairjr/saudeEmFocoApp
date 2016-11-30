@@ -87,16 +87,20 @@ angular.module('starter.controllers')
 
     occurrencesPromise.then(function (occurrences) {
       angular.forEach(occurrences, function (occurrence) {
-        $scope.pinOccurrence(occurrence);
+        if (occurrence.status === 'ACTIVE') {
+          $scope.pinOccurrence(occurrence);
+        }
       });
     });
   };
 
   $scope.pinOccurrence = function (occurrence) {
+    var focusPath = 'img/focusMark.png';
+    var casePath = 'img/caseMark.png';
     var marker = new google.maps.Marker({
       map: $scope.map,
       position: new google.maps.LatLng(occurrence.location.coordinates[0], occurrence.location.coordinates[1]),
-      icon: 'img/occurrenceMark.png'
+      icon: occurrence.type === 'focus' ? focusPath : casePath
     });
 
     var occurrenceUrl = '#/occurrence-details/' + occurrence._id;
