@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'ngResource', 'starter.controllers', 'starte
       controller: 'SymptomsTestCtrl'
     })
     .state('place', {
-      url: '/place/:lat/:lng/:placeId',
+      url: '/place/:lat/:lng/:placeId/:canAddTime',
       templateUrl: 'templates/place.html',
       controller: 'PlaceCtrl'
     })

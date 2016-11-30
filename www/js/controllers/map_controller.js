@@ -57,7 +57,8 @@ angular.module('starter.controllers')
       });
 
       if (hasCheckCurrentPosition) {
-        var centerPlace = getCenterPlace(places);
+        //var centerPlace = getCenterPlace(places);
+        var centerPlace = places[0];
         if (centerPlace) {
           $scope.displayWaitingTimePopup(centerPlace);
         }
@@ -71,8 +72,8 @@ angular.module('starter.controllers')
       position: new google.maps.LatLng(place.geometry.location.lat, place.geometry.location.lng),
       icon: 'img/placeMark.png'
     });
-
-    var content = "<h4>" + place.name + "</h4><a href='#/place'>Detalhes</a>";
+    var placeUrl = '#/place/' + place.geometry.location.lat + '/' + place.geometry.location.lng + '/' + place.place_id + '/false';
+    var content = "<h4>" + place.name + "</h4><a class='button button-positive' href='" + placeUrl + "'>Detalhes</a>";
     var infoWindow = new google.maps.InfoWindow({
       content: content
     });
@@ -103,8 +104,9 @@ angular.module('starter.controllers')
       icon: occurrence.type === 'focus' ? focusPath : casePath
     });
 
+    var title = occurrence.type === 'focus' ? 'Foco' : 'Contaminação';
     var occurrenceUrl = '#/occurrence-details/' + occurrence._id;
-    var content = "<h4>" + occurrence.description + "</h4><a href='" + occurrenceUrl + "'>Detalhes</a>";
+    var content = "<h4>" + title + "</h4><p>" + occurrence.description + "</p><a class='button button-positive' href='" + occurrenceUrl + "'>Detalhes</a>";
     var infoWindow = new google.maps.InfoWindow({
       content: content
     });
@@ -131,7 +133,7 @@ angular.module('starter.controllers')
   $scope.goToPlace = function (placeId) {
     if ($rootScope.username) {
       var position = $scope.map.getCenter();
-      $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId });
+      $state.go('place', { lng: position.lng(), lat: position.lat(), placeId: placeId, canAddTime: true });
     } else {
       $state.go('login');
     }

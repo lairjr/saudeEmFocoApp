@@ -1,9 +1,11 @@
 angular.module('starter.controllers')
 .controller('PlaceCtrl', function($scope, $state, $stateParams, $ionicPopup, $rootScope, placesService) {
   $scope.time = {};
+  $scope.canAddTime = false;
 
   $scope.init = function () {
     $scope.loadPlace();
+    $scope.canAddTime = $stateParams.canAddTime;
   };
 
   $scope.loadPlace = function () {

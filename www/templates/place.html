@@ -33,7 +33,7 @@
       </p>
     </div>
   </div>
-  <div class="list list-inset">
+  <div class="list list-inset" ng-if="canAddTime === 'true'">
     <div class="item item-divider">
       Tempo de atendimento
     </div>
@@ -46,7 +46,7 @@
       </button>
     </div>
   </div>
-  <div class="padding">
+  <div class="padding" ng-if="canAddTime === 'true'">
     <button class="button button-block button-assertive" ng-click="saveWaitingTime(time)">
       Informe seu tempo de atendimento
     </button>
