@@ -34,6 +34,7 @@ angular.module('starter.controllers')
       $scope.map.setCenter(currentPosition);
       $scope.loading.hide();
       $scope.loadHealthcarePlaces(true);
+      $scope.loadOccurrences(true);
     }, function (error) {
       var errorAlert = $ionicPopup.alert({
         title: 'Erro ao obter localizacao',
@@ -83,8 +84,9 @@ angular.module('starter.controllers')
     });
   };
 
-  $scope.loadOccurrences = function () {
-    var occurrencesPromise = occurrenceService.get();
+  $scope.loadOccurrences = function (hasCheckCurrentPosition) {
+    var position = $scope.map.getCenter();
+    var occurrencesPromise = occurrenceService.getWithDistance(position.lat(), position.lng());
 
     occurrencesPromise.then(function (occurrences) {
       angular.forEach(occurrences, function (occurrence) {
@@ -92,6 +94,14 @@ angular.module('starter.controllers')
           $scope.pinOccurrence(occurrence);
         }
       });
+
+      if (hasCheckCurrentPosition) {
+        angular.forEach(occurrences, function (occurrence) {
+          if (occurrence.distance <= 1000) {
+            $scope.displayAlert(occurrence);
+          }
+        });
+      }
     });
   };
 
@@ -106,7 +116,7 @@ angular.module('starter.controllers')
 
     var title = occurrence.type === 'focus' ? 'Foco' : 'Contaminação';
     var occurrenceUrl = '#/occurrence-details/' + occurrence._id;
-    var content = "<h4>" + title + "</h4><p>" + occurrence.description + "</p><a class='button button-positive' href='" + occurrenceUrl + "'>Detalhes</a>";
+    var content = "<h4>" + title + "</h4><p>" + occurrence.description + "</p><p>Distancia: " + occurrence.distance + " metros</p><a class='button button-positive' href='" + occurrenceUrl + "'>Detalhes</a>";
     var infoWindow = new google.maps.InfoWindow({
       content: content
     });
@@ -123,6 +133,16 @@ angular.module('starter.controllers')
     } else {
       $state.go('login');
     }
+  };
+
+  $scope.displayAlert = function (occurrence) {
+    var alert = $ionicPopup.alert({
+      title: 'Você está a menos de 1km de alguma ocorrência!',
+      template: occurrence.type
+    });
+
+    alert.then(function () {
+    });
   };
 
   $scope.goToHealthcarePlaces = function () {

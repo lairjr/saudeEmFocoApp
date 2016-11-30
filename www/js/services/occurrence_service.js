@@ -25,6 +25,18 @@ angular.module('starter.services').service('occurrenceService', function($resour
 
       return deferred.promise;
     },
+    getWithDistance: function(lat, lng) {
+      var deferred = $q.defer();
+
+      var occurrenceDistanceSvc = $resource('http://saudeemfocoapi.herokuapp.com/occurrences/distance/:lat/:lng');
+      occurrenceDistanceSvc.query({ lat: lat, lng: lng }).$promise.then(function (data) {
+        deferred.resolve(data);
+      }, function (error) {
+        deferred.reject(error);
+      });
+
+      return deferred.promise;
+    },
     getById: function (occurrenceId) {
       var deferred = $q.defer();
 
