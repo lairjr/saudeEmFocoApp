@@ -17,11 +17,13 @@ angular.module('starter.controllers')
   };
 
   $scope.getImageUrl = function (place) {
-    if (place) {
+    if (place.photo) {
       return 'https://maps.googleapis.com/maps/api/place/photo?' +
         'maxheight=300&maxwidth=300' +
         '&photoreference=' + place.photos[0].photo_reference +
         '&key=AIzaSyDslrUNBlR4yqDLLdAvgdqfvyIMtjee4fQ';
+    } else {
+      return 'img/imageNotFound.png';
     }
   };
 
