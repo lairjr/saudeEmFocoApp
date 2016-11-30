@@ -5,7 +5,7 @@
 
 <ion-content ng-init="init()" style="background-color:#30425C;">
   <div class="list padding">
-    <li class="item" ng-repeat="city in cityList">
+    <li class="item" ng-repeat="city in cityList | orderBy:'-numberOfOccurrences'">
       <h2>{{ city.name }}</h2>
       <p>{{ city.numberOfOccurrences }} ocorrências | {{ city.numberOfReviews }} resolvidos</p>
     </li>

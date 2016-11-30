@@ -57,8 +57,8 @@ angular.module('starter.controllers')
       });
 
       if (hasCheckCurrentPosition) {
-        //var centerPlace = getCenterPlace(places);
-        var centerPlace = places[0];
+        var centerPlace = getCenterPlace(places);
+        //var centerPlace = places[0];
         if (centerPlace) {
           $scope.displayWaitingTimePopup(centerPlace);
         }
