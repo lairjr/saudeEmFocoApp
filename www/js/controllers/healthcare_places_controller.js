@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('HealthcarePlacesCtrl', function($scope, $stateParams, $ionicPopup, placesService) {
+.controller('HealthcarePlacesCtrl', function($scope, $stateParams, $ionicPopup, $filter, placesService) {
   $scope.init = function () {
     $scope.loadPlaces();
   };
@@ -10,8 +10,14 @@ angular.module('starter.controllers')
     var promise = placesService.getByPosition($stateParams.lng, $stateParams.lat);
 
     promise.then(function (places) {
+      var tempList = [];
       angular.forEach(places, function (place) {
-        $scope.placeList.push(place);
+        tempList.push(addTotalDuration(place));
+      });
+      var orderedList = $filter('orderBy')(tempList, 'totalDuration');
+      var minDuration = orderedList[0].totalDuration;
+      angular.forEach(orderedList, function (place) {
+        $scope.placeList.push(addCssClass(place, minDuration));
       });
     });
   };
@@ -29,4 +35,22 @@ angular.module('starter.controllers')
         result += ":" + (seconds  < 10 ? "0" + seconds : seconds);
     return result;
   };
+
+  function addTotalDuration(place) {
+    place['totalDuration'] = (place.waitingTime <= 0) ? place.transportDuration : place.transportDuration + place.waitingTime;
+    return place;
+  }
+
+  function addCssClass(place, minDuration) {
+    var cssClass;
+    if (place.totalDuration <= (minDuration * 1.25)) {
+      cssClass = 'button-balanced';
+    } else if (place.totalDuration <= (minDuration * 1.5)) {
+      cssClass = 'button-energized';
+    } else {
+      cssClass = 'button-assertive';
+    }
+    place['buttonClass'] = cssClass;
+    return place;
+  }
 });

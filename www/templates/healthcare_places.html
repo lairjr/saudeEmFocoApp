@@ -11,7 +11,7 @@
     As filas nos hospitais são um grande problema para a saúde pública no Brasil. Encontre aqui informações relativas à localização e ao tempo de espera nos hospitais da região onde você se encontra agora, obtendo as melhores opções para um rápido atendimento.
   </div>
   <div class="list card">
-    <div ng-repeat="place in placeList | orderBy:'transportDuration'">
+    <div ng-repeat="place in placeList | orderBy:'totalDuration'">
       <div class="item">
         <h2>{{ place.name }}</h2>
       </div>
@@ -23,11 +23,11 @@
             <i class="icon ion-close-round"></i>
             Rota não encontrada
           </button>
-          <button ng-if="place.distanceMeasure" class="button button-small button-balanced">
+          <button ng-if="place.distanceMeasure" class="button button-small" ng-class="place.buttonClass">
             <i class="icon ion-arrow-graph-up-right"></i>
             {{ place.distanceMeasure }}
           </button>
-          <button ng-if="place.transportDuration" class="button button-small button-dark">
+          <button ng-if="place.transportDuration" class="button button-small" ng-class="place.buttonClass">
             <i class="icon ion-model-s"></i>
             {{ displayTime(place.transportDuration) }}
           </button>
