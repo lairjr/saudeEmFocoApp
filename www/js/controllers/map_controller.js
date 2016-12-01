@@ -45,7 +45,7 @@ angular.module('starter.controllers')
         $scope.loading.hide();
       });
       console.log('Unable to get location: ' + error.message);
-    });
+    }, { frequency:5000, maximumAge: 0, timeout: 120000, enableHighAccuracy:true });
   };
 
   $scope.loadHealthcarePlaces = function (hasCheckCurrentPosition) {
