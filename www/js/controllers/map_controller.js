@@ -96,11 +96,15 @@ angular.module('starter.controllers')
       });
 
       if (hasCheckCurrentPosition) {
+        var shouldDisplayAlert = false;
         angular.forEach(occurrences, function (occurrence) {
           if (occurrence.distance <= 1000) {
-            $scope.displayAlert(occurrence);
+            shouldDisplayAlert = true;
           }
         });
+        if (shouldDisplayAlert) {
+          $scope.displayAlert();
+        }
       }
     });
   };
@@ -135,10 +139,9 @@ angular.module('starter.controllers')
     }
   };
 
-  $scope.displayAlert = function (occurrence) {
+  $scope.displayAlert = function () {
     var alert = $ionicPopup.alert({
-      title: 'Você está a menos de 1km de alguma ocorrência!',
-      template: occurrence.type
+      title: 'Você está a menos de 1km de alguma ocorrência!'
     });
 
     alert.then(function () {
